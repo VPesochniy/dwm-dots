@@ -1,0 +1,1 @@
+/home/vpesochniy/yandex-disk/Obsidian/PC/Linux/dwm-dots/README.md
