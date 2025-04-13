@@ -1,3 +1,3 @@
 # Initial commit
 
-![[image.png]]
+![](./image.png)
