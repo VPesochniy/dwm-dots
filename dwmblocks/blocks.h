@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
 	// {" ", "pamixer --get-volume-human",		0,		10},
-	{" ", "date '+%r'",		1,		0},
+	{"  ", "date '+%r'",		1,		0},
 	// {"  ", "xkb-switch",		1,		0},
 	{"  ", "xset -q|grep LED| awk '{ if (substr ($10,5,1) == 1) print \"RU\"; else print \"EN\"; }'",		1,		0},
 	{" ", "echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"",		1,		0},
