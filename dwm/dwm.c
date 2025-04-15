@@ -262,6 +262,8 @@ static void zoom(const Arg *arg);
 static void floatcentered(const Arg *arg);
 static void resizekey(const Arg *arg);
 static void movekey(const Arg *arg);
+void tagall(const Arg *arg);
+void toggleviewmaster(const Arg *arg);
 
 
 // /////////////////////////////////////////////////////////////////////////////
@@ -836,6 +838,7 @@ drawbar(Monitor *m)
 	w = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 4, m->ltsymbol, 0);
+	x -= lrpad / 4;
 
 	if ((w = m->ww - tw - x) > bh) {
 		if (m->sel) {
@@ -2650,6 +2653,34 @@ movekey(const Arg *arg)
 	XUngrabPointer(dpy, CurrentTime);
 	while (XCheckMaskEvent(dpy, EnterWindowMask, &ev));
 }
+
+void
+tagall(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+
+	selmon->sel->tags |= TAGMASK;  // прикрепить ко всем тегам
+	arrange(selmon);               // перерисовать
+}
+
+void
+toggleviewmaster(const Arg *arg)
+{
+	unsigned int newtags = selmon->tagset[selmon->seltags] ^ arg->ui;
+	selmon->tagset[selmon->seltags] = newtags;
+
+	focus(NULL);
+	arrange(selmon);
+
+	// Если выбранное окно теперь видно — делаем его мастером
+	if (selmon->sel && (selmon->sel->tags & newtags)) {
+		detach(selmon->sel);
+		attach(selmon->sel);
+		arrange(selmon);
+	}
+}
+
 
 int
 main(int argc, char *argv[])
