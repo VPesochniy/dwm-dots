@@ -6,7 +6,14 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 // static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
-static char *font = "JetBrainsMono NF:size=14:style=Bold";
+static char *font = "JetBrainsMono Nerd Font:size=14:style=Bold";
+
+/* Spare fonts */
+static char *font2[] = {
+	"JetBrainsMono Nerd Font:size=14:style=Bold",
+	"Noto Color Emoji:size=14:style=Regular",
+	};
+		
 static int borderpx = 2;
 
 /*

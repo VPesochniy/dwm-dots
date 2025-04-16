@@ -10,9 +10,10 @@ static int fuzzy  = 1;                      /* -F  option; if 0, dmenu doesn't u
 // /////////////////////////////////////////////////////////////////////////////
 
 /* -fn option overrides fonts[0]; default X11 font or font set */
-static const char *fonts[] = {
-	"JetBrainsMono NF:size=14:style=Bold"
-};
+
+static char font[]				= "JetBrainsMono Nerd Font:size=14:style=Bold";
+static const char *fonts[]		= { font, "Noto Color Emoji:size=14:style=Regular" };
+
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 // static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */

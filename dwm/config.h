@@ -5,8 +5,8 @@ static unsigned int gappx		= 9;	/* gaps between windows */
 static int showbar				= 1;	/* 0 means no bar */
 static int topbar				= 1;	/* 0 means bottom bar */
 
-static char font[]				= "JetBrainsMono NF:size=14:style=Bold";
-static const char *fonts[]		= { font };
+static char font[]				= "JetBrainsMono Nerd Font:size=14:style=Bold";
+static const char *fonts[]		= { font, "Noto Color Emoji:size=14:style=Regular" };
 
 static char normfgcolor[]		= "#ebdbb2";
 static char normbgcolor[]		= "#282828";
@@ -80,13 +80,6 @@ static const char *music_player[]	= { "st", "-e", "mocp", NULL };
 static const char *code[]			= { "codium", NULL };
 static const char *idea[]			= { "intellij-idea-ultimate-edition", NULL };
 
-static const char *vol_up[]			= { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *vol_down[]		= { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
-static const char *vol_toggle[]		= { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *mic_toggle[]		= { "pactl", "set-source-mute", "@DEFAULT_SOURCE@", "toggle", NULL };
-static const char *bright_up[]		= { "brightnessctl", "set", "5+", NULL };
-static const char *bright_down[]	= { "brightnessctl", "set", "5-", NULL };
-
 ResourcePref resources[] = {
 		{ "font",				STRING,		&font },
 		{ "background",			STRING,		&normbgcolor },
@@ -118,7 +111,7 @@ static const Key keys[] = {
 	{ MODKEY,					XK_space,		spawn,			{.v = dmenucmd } },
 	{ MODKEY,					XK_Return,		spawn,			{.v = termcmd } },
 	{ MODKEY,					XK_BackSpace,	spawn,			{.v = powermenu } },
-	{ MODKEY,					XK_Print,		spawn,			{.v = flameshot } },
+	{ 0,						XK_Print,		spawn,			{.v = flameshot } },
 
 	{ MODKEY,					XK_e,			spawn,			{.v = filemanagercmd } },
 	{ MODKEY,					XK_b,			spawn,			{.v = browser } },
@@ -140,12 +133,13 @@ static const Key keys[] = {
 	{ MODKEY,					XK_d,			movekey,		{0} },
 	{ MODKEY,					XK_r,			resizekey,		{0} },
 
-    { 0,			XF86XK_AudioRaiseVolume,	spawn,			{.v = vol_up } },
-	{ 0,			XF86XK_AudioLowerVolume,	spawn,			{.v = vol_down } },
-	{ 0,			XF86XK_AudioMute,			spawn,			{.v = vol_toggle } },
-	{ 0,			XF86XK_AudioMicMute,		spawn,			{.v = mic_toggle } },
-	{ 0,			XF86XK_MonBrightnessUp,		spawn,			{.v = bright_up } },
-	{ 0,			XF86XK_MonBrightnessDown,	spawn,			{.v = bright_down } },
+    { 0,			XF86XK_AudioRaiseVolume,	spawn,			SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%+ && kill -36 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_AudioLowerVolume,	spawn,			SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%- && kill -36 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_AudioMute,			spawn,			SHCMD("wpctl set-mute @DEFAULT_SINK@ toggle") },
+	{ 0,			XF86XK_AudioMicMute,		spawn,			SHCMD("wpctl set-mute @DEFAULT_SOURCE@ toggle") },
+	{ 0,			XF86XK_MonBrightnessUp,		spawn,			SHCMD("brightnessctl set 5%+ && kill -37 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_MonBrightnessDown,	spawn,			SHCMD("brightnessctl set 5%- && kill -37 $(pidof dwmblocks)") },
+	{ 0,			XK_ISO_Next_Group,			spawn,			SHCMD("kill -35 $(pidof dwmblocks)") },
 };
 
 static const Button buttons[] = {
