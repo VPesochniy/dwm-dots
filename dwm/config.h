@@ -135,8 +135,8 @@ static const Key keys[] = {
 
     { 0,			XF86XK_AudioRaiseVolume,	spawn,			SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%+ && kill -36 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_AudioLowerVolume,	spawn,			SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%- && kill -36 $(pidof dwmblocks)") },
-	{ 0,			XF86XK_AudioMute,			spawn,			SHCMD("wpctl set-mute @DEFAULT_SINK@ toggle") },
-	{ 0,			XF86XK_AudioMicMute,		spawn,			SHCMD("wpctl set-mute @DEFAULT_SOURCE@ toggle") },
+	{ 0,			XF86XK_AudioMute,			spawn,			SHCMD("wpctl set-mute @DEFAULT_SINK@ toggle && kill -36 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_AudioMicMute,		spawn,			SHCMD("wpctl set-mute @DEFAULT_SOURCE@ toggle && kill -38 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_MonBrightnessUp,		spawn,			SHCMD("brightnessctl set 5%+ && kill -37 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_MonBrightnessDown,	spawn,			SHCMD("brightnessctl set 5%- && kill -37 $(pidof dwmblocks)") },
 	{ 0,			XK_ISO_Next_Group,			spawn,			SHCMD("kill -35 $(pidof dwmblocks)") },
