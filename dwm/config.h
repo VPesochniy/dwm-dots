@@ -38,7 +38,6 @@ static const Rule rules[] = {
 	{ "obsidian",			NULL,		NULL,		1 << 4,			0,			-1 },
 	{ "yandex-music",		NULL,		NULL,		1 << 6,			0,			-1 },
 	{ "qBittorrent",		NULL,		NULL,		1 << 7,			0,			-1 },
-	{ "St",					NULL,		"mocp",		1 << 8,			0,			-1 },
 };
 
 /* layout(s) */
@@ -49,7 +48,8 @@ static const int lockfullscreen	= 1;	/* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol	arrange function */
-	{ "|",      tile },	/* first entry is default */
+	{ "[T]",      tile },	/* first entry is default */
+	{ "[M]",	monocle },
 };
 
 /* key definitions */
@@ -69,14 +69,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]		= { "dmenu_run", "-i", "-sb", selbordercolor, NULL };
 static const char *termcmd[]		= { "st", NULL };
-static const char *powermenu[]		= { "/home/vpesochniy/documents/dwm-dots/dmenu/scripts/powermenu.sh", NULL };
 
-static const char *filemanagercmd[]	= { "thunar", NULL };
+static const char *filemanagercmd[]	= { "st", "-e", "yazi", NULL };
 static const char *browser[]		= { "thorium-browser", NULL };
 static const char *flameshot[]		= { "flameshot", "gui", NULL };
 static const char *obsidian[]		= { "obsidian", NULL };
 static const char *yandex_music[]	= { "yandex-music", NULL };
-static const char *music_player[]	= { "st", "-e", "mocp", NULL };
+static const char *music_player[]	= { "st", "-e", "kew", NULL };
 static const char *code[]			= { "codium", NULL };
 static const char *idea[]			= { "intellij-idea-ultimate-edition", NULL };
 
@@ -103,14 +102,14 @@ static const Key keys[] = {
 	TAGKEYS(					XK_9,			8 )
 
 	{ MODKEY,					XK_grave,		quit,			{0} },
-	{ Mod1Mask,					XK_Tab,			view,			{0} },
+	{ Mod1Mask,					XK_Tab,			setlayout,		{0} },
 	{ MODKEY,					XK_Tab,			viewnext,		{0} },
 	{ MODKEY|ShiftMask,			XK_Tab,			viewprev,		{0} },
 	{ MODKEY|ShiftMask,			XK_0,			tagall,			{0} },
 
 	{ MODKEY,					XK_space,		spawn,			{.v = dmenucmd } },
 	{ MODKEY,					XK_Return,		spawn,			{.v = termcmd } },
-	{ MODKEY,					XK_BackSpace,	spawn,			{.v = powermenu } },
+	{ MODKEY,					XK_BackSpace,	spawn,			SHCMD("$HOME/documents/dwm-dots/dmenu/scripts/powermenu.sh") },
 	{ 0,						XK_Print,		spawn,			{.v = flameshot } },
 
 	{ MODKEY,					XK_e,			spawn,			{.v = filemanagercmd } },
@@ -145,6 +144,6 @@ static const Key keys[] = {
 static const Button buttons[] = {
 	/* click			event mask		button			function		argument */
 	{ ClkTagBar,		0,				Button1,		view,			{0} },
-	{ ClkTagBar,		MODKEY,			Button1,		tag,			{0} },
-	{ ClkTagBar,		0,				Button3,		toggleview,		{0} },
+	{ ClkTagBar,		ShiftMask,		Button1,		tag,			{0} },
+	{ ClkTagBar,		ControlMask,	Button1,		toggleview,		{0} },
 };
