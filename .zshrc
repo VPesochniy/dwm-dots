@@ -7,36 +7,59 @@ fi
 
 
 export EDITOR=nvim
-fpath+=($HOME/.zsh/zsh-completions/src)
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
+# Some automation
+ZSH_HOME="$HOME/.zsh"
+
+if [[ ! -d $ZSH_HOME ]]; then
+  echo "\n$ZSH_HOME folder is not configured. Installing plugins...\n"
+  mkdir $ZSH_HOME && cd $ZSH_HOME
+  git clone https://github.com/Aloxaf/fzf-tab.git
+  echo "" 
+  git clone https://github.com/zsh-users/zsh-completions.git
+  echo ""
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+  echo ""
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git
+  echo ""
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
+  cd $HOME
+  echo "\nAll plugins successfully installed!"
+fi
+
+# Enable shell completions
+fpath+=($ZSH_HOME/zsh-completions/src)
 autoload -U compinit ; compinit
 
-# rebuild completions cache
+# Rebuild completions cache
 # rm ~/.zcompdump*; compinit
 
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
-setopt no_case_glob
-setopt globdots
-stty -ixon <$TTY >$TTY
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath' # Folder preview while pressing Tab
+setopt no_case_glob # No difference in case while matching
+setopt globdots # Show hidden files by default
+stty -ixon <$TTY >$TTY # Fix 'Ctrl + S' Modifier
 
+# Bindings
+bindkey '^ ' autosuggest-accept # Ctrl + Space
+bindkey "^a" beginning-of-line # Ctrl + A
+bindkey "^e" end-of-line # Ctrl + E
+bindkey "^f" forward-word # Ctrl + F
+bindkey "^b" backward-word # Ctrl + B
+bindkey -r "^[b" # Remove 'Alt + B' binding
 
-bindkey "^a" beginning-of-line
-bindkey "^e" end-of-line
-bindkey "^b" backward-word
-bindkey "^f" forward-word
-bindkey -r "^s"
-bindkey -r "^[b"
-
-
+# Run zoxide in interactive mode
 function _run-cdi {
   result="$(zoxide query -i)"
   BUFFER="cd ${(q-)result}"
   zle redisplay
 }
 zle -N _run-cdi
-bindkey "^[f" _run-cdi
+bindkey "^[f" _run-cdi # Alt + F
 
-
+# Mapping to run Rust coreutils by default
 alias arch="uu-arch"
 alias b2sum="uu-b2sum"
 alias b3sum="uu-b3sum"
@@ -152,7 +175,7 @@ alias who="uu-who"
 alias whoami="uu-whoami"
 alias yes="uu-yes"
 
-
+# Mapping to run eza by default
 alias ls="eza"
 alias lsn="eza -s=newest"
 alias ll="eza -l"
@@ -176,15 +199,15 @@ alias gd="git diff"
 alias ff="fastfetch"
 alias pf="pfetch"
 
-
+# Enabling tools
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 
-
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
-source ~/.zsh/fzf-tab/fzf-tab.plugin.zsh
+# Enabling plugins
+source $ZSH_HOME/fzf-tab/fzf-tab.plugin.zsh
+source $ZSH_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH_HOME/powerlevel10k/powerlevel10k.zsh-theme
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

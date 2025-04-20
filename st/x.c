@@ -789,7 +789,6 @@ xresize(int col, int row)
 
 	XFreePixmap(xw.dpy, xw.buf);
 	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
-			// DefaultDepth(xw.dpy, xw.scr));
 			xw.depth);
 
 
@@ -912,9 +911,6 @@ xclear(int x1, int y1, int x2, int y2)
 void
 xhints(void)
 {
-	// XClassHint class = {opt_name ? opt_name : termname,
-	//                     opt_class ? opt_class : termname};
-	
 	XClassHint class = {opt_name ? opt_name : "st",
 		                    opt_class ? opt_class : "St"};
 		
@@ -1295,11 +1291,7 @@ xinit(int cols, int rows)
 	XVisualInfo vis;
 
 
-	// if (!(xw.dpy = XOpenDisplay(NULL)))
-	// 	die("can't open display\n");
-
 	xw.scr = XDefaultScreen(xw.dpy);
-	// xw.vis = XDefaultVisual(xw.dpy, xw.scr);
 
 	root = XRootWindow(xw.dpy, xw.scr);
 	if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0))))
@@ -1326,9 +1318,6 @@ xinit(int cols, int rows)
 	xloadsparefonts();
 
 	/* colors */
-	// xw.cmap = XDefaultColormap(xw.dpy, xw.scr);
-
-	
 	xw.cmap = XCreateColormap(xw.dpy, parent, xw.vis, None);
 
 	
@@ -1351,12 +1340,6 @@ xinit(int cols, int rows)
 		| ButtonMotionMask | ButtonPressMask | ButtonReleaseMask;
 	xw.attrs.colormap = xw.cmap;
 
-	// root = XRootWindow(xw.dpy, xw.scr);
-	// if (!(opt_embed && (parent = strtol(opt_embed, NULL, 0))))
-	// 	parent = root;
-	// xw.win = XCreateWindow(xw.dpy, root, xw.l, xw.t,
-	// 		win.w, win.h, 0, XDefaultDepth(xw.dpy, xw.scr), InputOutput,
-
 	xw.win = XCreateWindow(xw.dpy, parent, xw.l, xw.t,
 			win.w, win.h, 0, xw.depth, InputOutput,
 			
@@ -1370,8 +1353,6 @@ xinit(int cols, int rows)
 	dc.gc = XCreateGC(xw.dpy, xw.win, GCGraphicsExposures,
 			&gcvalues);
 	xw.buf = XCreatePixmap(xw.dpy, xw.win, win.w, win.h,
-			// DefaultDepth(xw.dpy, xw.scr));
-
 			xw.depth);
 			
 	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
@@ -1696,13 +1677,7 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 	XftDrawGlyphFontSpec(xw.draw, fg, specs, len);
 
 	/* Render underline and strikethrough. */
-	// if (base.mode & ATTR_UNDERLINE) {
-
-	
 	if (base.mode & ATTR_UNDERLINE || base.mode & ATTR_URL) {
-
-
-
 		XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent * chscale + 1,
 				width, 1);
 	}

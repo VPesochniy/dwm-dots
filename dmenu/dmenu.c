@@ -1,13 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #include <ctype.h>
 #include <locale.h>
-
-// /////////////////////////////////////////////////////////////////////////////
-
 #include <math.h>
-
-// /////////////////////////////////////////////////////////////////////////////
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -40,13 +34,7 @@ struct item {
 	char *text;
 	struct item *left, *right;
 	int out;
-
-	// /////////////////////////////////////////////////////////////////////////////
-
 	double distance;
-
-	// /////////////////////////////////////////////////////////////////////////////
-
 };
 
 static char text[BUFSIZ] = "";
@@ -103,13 +91,7 @@ calcoffsets(void)
 	int i, n;
 
 	if (lines > 0)
-		// n = lines * bh;
-
-// /////////////////////////////////////////////////////////////////////////////
-
-n = lines * columns * bh;
-
-// /////////////////////////////////////////////////////////////////////////////
+		n = lines * columns * bh;
 
 else
 		n = mw - (promptw + inputw + TEXTW("<") + TEXTW(">"));
@@ -122,8 +104,6 @@ else
 			break;
 }
 
-// /////////////////////////////////////////////////////////////////////////////
-
 static int
 max_textw(void)
 {
@@ -132,8 +112,6 @@ max_textw(void)
 		len = MAX(TEXTW(item->text), len);
 	return len;
 }
-
-// /////////////////////////////////////////////////////////////////////////////
 
 static void
 cleanup(void)
@@ -208,12 +186,6 @@ drawmenu(void)
 	}
 
 	if (lines > 0) {
-		// /* draw vertical list */
-		// for (item = curr; item != next; item = item->right)
-		// 	drawitem(item, x, y += bh, mw - x);
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		/* draw grid */
 		int i = 0;
 		for (item = curr; item != next; item = item->right, i++)
@@ -223,10 +195,6 @@ drawmenu(void)
 				y + (((i % lines) + 1) * bh),
 				(mw - x) / columns
 			);
-
-// /////////////////////////////////////////////////////////////////////////////
-
-
 
 	} else if (matches) {
 		/* draw horizontal list */
@@ -282,8 +250,6 @@ grabkeyboard(void)
 	}
 	die("cannot grab keyboard");
 }
-
-// /////////////////////////////////////////////////////////////////////////////
 
 int
 compare_distance(const void *a, const void *b)
@@ -365,21 +331,15 @@ fuzzymatch(void)
 	calcoffsets();
 }
 
-// /////////////////////////////////////////////////////////////////////////////
-
 static void
 match(void)
 {
-
-// /////////////////////////////////////////////////////////////////////////////
 
 	if (fuzzy) {
 			fuzzymatch();
 			return;
 		}
 		
-// /////////////////////////////////////////////////////////////////////////////
-
 	static char **tokv = NULL;
 	static int tokn = 0;
 
@@ -777,9 +737,6 @@ setup(void)
 	int a, di, n, area = 0;
 #endif
 	/* init appearance */
-	// for (j = 0; j < SchemeLast; j++)
-	// 	scheme[j] = drw_scm_create(drw, colors[j], 2);
-
 	for (j = 0; j < SchemeLast; j++) {
 			scheme[j] = drw_scm_create(drw, (const char**)colors[j], 2);
 		}
@@ -796,12 +753,7 @@ setup(void)
 	bh = drw->fonts->h + 2;
 	lines = MAX(lines, 0);
 	mh = (lines + 1) * bh;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
-
-// /////////////////////////////////////////////////////////////////////////////
 
 #ifdef XINERAMA
 	i = 0;
@@ -829,12 +781,6 @@ setup(void)
 				if (INTERSECT(x, y, 1, 1, info[i]) != 0)
 					break;
 
-		// x = info[i].x_org;
-		// y = info[i].y_org + (topbar ? 0 : info[i].height - mh);
-		// mw = info[i].width;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		if (centered) {
 			mw = MIN(MAX(max_textw() + promptw, min_width), info[i].width);
 			x = info[i].x_org + ((info[i].width  - mw) / 2);
@@ -845,8 +791,6 @@ setup(void)
 			mw = info[i].width;
 		}
 
-// /////////////////////////////////////////////////////////////////////////////
-
 		XFree(info);
 	} else
 #endif
@@ -854,11 +798,6 @@ setup(void)
 		if (!XGetWindowAttributes(dpy, parentwin, &wa))
 			die("could not get embedding window attributes: 0x%lx",
 			    parentwin);
-		// x = 0;
-		// y = topbar ? 0 : wa.height - mh;
-		// mw = wa.width;
-
-// /////////////////////////////////////////////////////////////////////////////
 
 		if (centered) {
 			mw = MIN(MAX(max_textw() + promptw, min_width), wa.width);
@@ -870,8 +809,6 @@ setup(void)
 			mw = wa.width;
 		}
 
-// /////////////////////////////////////////////////////////////////////////////
-
 	}
 	promptw = (prompt && *prompt) ? TEXTW(prompt) - lrpad / 4 : 0;
 	inputw = mw / 3; /* input width: ~33% of monitor width */
@@ -881,17 +818,12 @@ setup(void)
 	swa.override_redirect = True;
 	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
-	// win = XCreateWindow(dpy, root, x, y, mw, mh, 0,
-
-// /////////////////////////////////////////////////////////////////////////////
 
 	win = XCreateWindow(dpy, root, x, y, mw, mh, border_width,
 		CopyFromParent, CopyFromParent, CopyFromParent,
 		CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
 	if (border_width)
 		XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
-
-// /////////////////////////////////////////////////////////////////////////////
 
 	XSetClassHint(dpy, win, &ch);
 
@@ -920,14 +852,7 @@ setup(void)
 static void
 usage(void)
 {
-	// die("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
-
-// /////////////////////////////////////////////////////////////////////////////
-
 	die("usage: dmenu [-bFfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
-
-// /////////////////////////////////////////////////////////////////////////////
-
 	    "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]");
 }
 
@@ -979,34 +904,18 @@ main(int argc, char *argv[])
 			exit(0);
 		} else if (!strcmp(argv[i], "-b")) /* appears at the bottom of the screen */
 			topbar = 0;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-F"))   /* disables fuzzy matching */
 		fuzzy = 0;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
 			fast = 1;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-c"))   /* centers dmenu on screen */
 			centered = 1;
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
 			fstrncmp = strncasecmp;
 			fstrstr = cistrstr;
 		} else if (i + 1 == argc)
 			usage();
 		/* these options take one argument */
-		// else if (!strcmp(argv[i], "-l"))   /* number of lines in vertical list */
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-g")) {   /* number of columns in grid */
 			columns = atoi(argv[++i]);
 			if (lines == 0) lines = 1;
@@ -1014,40 +923,23 @@ main(int argc, char *argv[])
 			lines = atoi(argv[++i]);
 			if (columns == 0) columns = 1;
 		} else if (!strcmp(argv[i], "-m"))
-
-
-// /////////////////////////////////////////////////////////////////////////////
-			
-		// else if (!strcmp(argv[i], "-m"))
 			mon = atoi(argv[++i]);
 		else if (!strcmp(argv[i], "-p"))   /* adds prompt to left of input field */
 			prompt = argv[++i];
 		else if (!strcmp(argv[i], "-fn"))  /* font or font set */
-			// fonts[0] = argv[++i];
 			tempfonts = argv[++i];
-
 		else if (!strcmp(argv[i], "-nb"))  /* normal background color */
-			// colors[SchemeNorm][ColBg] = argv[++i];
 			colortemp[0] = argv[++i];
 		else if (!strcmp(argv[i], "-nf"))  /* normal foreground color */
-			// colors[SchemeNorm][ColFg] = argv[++i];
 			colortemp[1] = argv[++i];
 		else if (!strcmp(argv[i], "-sb"))  /* selected background color */
-			// colors[SchemeSel][ColBg] = argv[++i];
 			colortemp[2] = argv[++i];
 		else if (!strcmp(argv[i], "-sf"))  /* selected foreground color */
-			// colors[SchemeSel][ColFg] = argv[++i];
 			colortemp[3] = argv[++i];
 		else if (!strcmp(argv[i], "-w"))   /* embedding window id */
 			embed = argv[++i];
-
-// /////////////////////////////////////////////////////////////////////////////
-
 		else if (!strcmp(argv[i], "-bw"))
 			border_width = atoi(argv[++i]); /* border width */
-			
-// /////////////////////////////////////////////////////////////////////////////
-
 		else
 			usage();
 
@@ -1063,7 +955,6 @@ main(int argc, char *argv[])
 		die("could not get embedding window attributes: 0x%lx",
 		    parentwin);
 	drw = drw_create(dpy, screen, root, wa.width, wa.height);
-	// if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 	readxresources();
 	/* Now we check whether to override xresources with commandline parameters */
 	if ( tempfonts )

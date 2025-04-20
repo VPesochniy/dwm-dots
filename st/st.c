@@ -1187,18 +1187,14 @@ tswapscreen(void)
 void
 kscrollup(const Arg *a)
 {
-	// int n = a->i;
 	float n = a->f;
 	
 	if (IS_SET(MODE_ALTSCREEN))
 		return;
 
-	// if (n < 0) n = (-n) * term.row;
-
 	if (n < 0) n = MAX((-n) * term.row, 1);
 
 	if (n > TSCREEN.size - term.row - TSCREEN.off) n = TSCREEN.size - term.row - TSCREEN.off;
-	// while (!TLINE(-n)) --n;
 	while (!TLINE((int)-n)) --n;
 
 	TSCREEN.off += n;
@@ -1209,14 +1205,10 @@ kscrollup(const Arg *a)
 void
 kscrolldown(const Arg *a)
 {
-
-	// int n = a->i;
 	float n = a->f;
 
 	if (IS_SET(MODE_ALTSCREEN))
 		return;
-
-	// if (n < 0) n = (-n) * term.row;
 
 	if (n < 0) n = MAX((-n) * term.row, 1);
 

@@ -17,27 +17,27 @@ static char selbgcolor[]		= "#d79921";
 static char selbordercolor[]	= "#fabd2f";
 
 static char *colors[][3] = {
-       /*				fg				bg				border   */
-       [SchemeNorm] = { normfgcolor,	normbgcolor,	normbordercolor },
-       [SchemeSel]  = { selfgcolor,		selbgcolor,		selbordercolor  },
+	/*				fg				bg				border			*/
+	[SchemeNorm] = { normfgcolor,	normbgcolor,	normbordercolor },
+	[SchemeSel]  = { selfgcolor,	selbgcolor,		selbordercolor  },
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class				instance	title		tags mask		isfloating	monitor */
-	{ "jetbrains-idea",		NULL,		NULL,		1 << 1,			0,			-1 },
-	{ "VSCodium",			NULL,		NULL,		1 << 1,			0,			-1 },
-	{ "Thorium-browser",	NULL,		NULL,		1 << 2,			0,			-1 },
-	{ "TelegramDesktop",	NULL,		NULL,		1 << 3,			0,			-1 },
-	{ "obsidian",			NULL,		NULL,		1 << 4,			0,			-1 },
-	{ "yandex-music",		NULL,		NULL,		1 << 6,			0,			-1 },
-	{ "qBittorrent",		NULL,		NULL,		1 << 7,			0,			-1 },
+	/* class				instance	title		tags mask		isfloating	monitor	*/
+	{ "jetbrains-idea",		NULL,		NULL,		1 << 1,			0,			-1		},
+	{ "VSCodium",			NULL,		NULL,		1 << 1,			0,			-1		},
+	{ "Thorium-browser",	NULL,		NULL,		1 << 2,			0,			-1		},
+	{ "TelegramDesktop",	NULL,		NULL,		1 << 3,			0,			-1		},
+	{ "obsidian",			NULL,		NULL,		1 << 4,			0,			-1		},
+	{ "yandex-music",		NULL,		NULL,		1 << 6,			0,			-1		},
+	{ "qBittorrent",		NULL,		NULL,		1 << 7,			0,			-1		},
 };
 
 /* layout(s) */
@@ -47,18 +47,18 @@ static int resizehints			= 0;	/* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen	= 1;	/* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
-	/* symbol	arrange function */
-	{ "[T]",      tile },	/* first entry is default */
-	{ "[M]",	monocle },
+	/* symbol	arrange function	*/
+	{ "[T]",	tile 				},	/* first entry is default */
+	{ "[M]",	monocle 			},
 };
 
 /* key definitions */
 #include <X11/XF86keysym.h>
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,					KEY,		view,			{.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,			KEY,		tag,			{.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,		KEY,		toggleview,		{.ui = 1 << TAG} },
+	{ MODKEY,					KEY,		view,				{.ui = 1 << TAG} }, \
+	{ MODKEY|ShiftMask,			KEY,		tag,				{.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask,		KEY,		toggleviewmaster,	{.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -66,7 +66,7 @@ static const Layout layouts[] = {
 #define STATUSBAR "dwmblocks"
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static char dmenumon[2]	= "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]		= { "dmenu_run", "-i", "-sb", selbordercolor, NULL };
 static const char *termcmd[]		= { "st", NULL };
 
@@ -90,19 +90,9 @@ ResourcePref resources[] = {
 };
 
 static const Key keys[] = {
-	/* modifier					key				function        argument */
-	TAGKEYS(					XK_1,			0 )
-	TAGKEYS(					XK_2,			1 )
-	TAGKEYS(					XK_3,			2 )
-	TAGKEYS(					XK_4,			3 )
-	TAGKEYS(					XK_5,			4 )
-	TAGKEYS(					XK_6,			5 )
-	TAGKEYS(					XK_7,			6 )
-	TAGKEYS(					XK_8,			7 )
-	TAGKEYS(					XK_9,			8 )
-
+	/*	modifier				key				function		argument	*/
 	{ MODKEY,					XK_grave,		quit,			{0} },
-	{ Mod1Mask,					XK_Tab,			setlayout,		{0} },
+	{ MODKEY,					XK_0,			setlayout,		{0} },
 	{ MODKEY,					XK_Tab,			viewnext,		{0} },
 	{ MODKEY|ShiftMask,			XK_Tab,			viewprev,		{0} },
 	{ MODKEY|ShiftMask,			XK_0,			tagall,			{0} },
@@ -139,11 +129,21 @@ static const Key keys[] = {
 	{ 0,			XF86XK_MonBrightnessUp,		spawn,			SHCMD("brightnessctl set 5%+ && kill -37 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_MonBrightnessDown,	spawn,			SHCMD("brightnessctl set 5%- && kill -37 $(pidof dwmblocks)") },
 	{ 0,			XK_ISO_Next_Group,			spawn,			SHCMD("kill -35 $(pidof dwmblocks)") },
+
+	TAGKEYS(					XK_1,			0 )
+	TAGKEYS(					XK_2,			1 )
+	TAGKEYS(					XK_3,			2 )
+	TAGKEYS(					XK_4,			3 )
+	TAGKEYS(					XK_5,			4 )
+	TAGKEYS(					XK_6,			5 )
+	TAGKEYS(					XK_7,			6 )
+	TAGKEYS(					XK_8,			7 )
+	TAGKEYS(					XK_9,			8 )
 };
 
 static const Button buttons[] = {
-	/* click			event mask		button			function		argument */
-	{ ClkTagBar,		0,				Button1,		view,			{0} },
-	{ ClkTagBar,		ShiftMask,		Button1,		tag,			{0} },
-	{ ClkTagBar,		ControlMask,	Button1,		toggleview,		{0} },
+	/* click			event mask		button			function		argument	*/
+	{ ClkTagBar,		0,				Button1,		view,			{0}			},
+	{ ClkTagBar,		ShiftMask,		Button1,		tag,			{0}			},
+	{ ClkTagBar,		ControlMask,	Button1,		toggleview,		{0}			},
 };

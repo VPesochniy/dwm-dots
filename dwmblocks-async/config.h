@@ -24,9 +24,8 @@
     X("   ", "wpctl get-volume @DEFAULT_SOURCE@ | awk '{if ($NF == \"[MUTED]\") print \"off\" ; else print $NF * 100 \"%\"}'", 1, 4)   \
     X("   ", "bluetoothctl info | awk '/Battery/ {print $NF}' | sed -e 's/(//' -e 's/)/%/'", 1, 0)   \
     X("   ", "nmcli device wifi | awk '/^*/ {print $8 \"%\"}'", 5, 0)   \
-    X(" ", "date '+%d.%m'", 1, 0) \
     X("󰃠 ", "brightnessctl info | awk '/Current/ {print $NF}' | sed -e 's/(//' -e 's/)//'", 0, 3)   \
-    X("󰁹  ", "echo \"$(cat /sys/class/power_supply/BAT0/capacity)% \"", 5, 0) \
-
+    X("󰁹  ", "echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"", 5, 0) \
+    X(" ", "date '+%d.%m '", 1, 0) \
 
 #endif  // CONFIG_H

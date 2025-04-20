@@ -5,7 +5,6 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-// static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static char *font = "JetBrainsMono Nerd Font:size=14:style=Bold";
 
 /* Spare fonts */	
@@ -104,40 +103,8 @@ unsigned int tabspaces = 8;
 /* bg opacity */
 float alpha = 0.8;
 
-
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-
-	// /* 8 normal colors */
-	// "black",
-	// "red3",
-	// "green3",
-	// "yellow3",
-	// "blue2",
-	// "magenta3",
-	// "cyan3",
-	// "gray90",
-
-	// /* 8 bright colors */
-	// "gray50",
-	// "red",
-	// "green",
-	// "yellow",
-	// "#5c5cff",
-	// "magenta",
-	// "cyan",
-	// "white",
-
-	// [255] = 0,
-
-	// /* more colors can be added after 255 to use with DefaultXX */
-	// "#cccccc",
-	// "#555555",
-	// "gray90", /* default foreground colour */
-	// "black", /* default background colour */
-
-// /////////////////////////////////////////////////////////////////////////////
-
 	[0] = "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
 	[1] = "#cc241d", /* red     */
 	[2] = "#98971a", /* green   */
@@ -154,19 +121,12 @@ static const char *colorname[] = {
 	[13] = "#d3869b", /* magenta */
 	[14] = "#8ec07c", /* cyan    */
 	[15] = "#ebdbb2", /* white   */
-
-// /////////////////////////////////////////////////////////////////////////////
-
 };
-
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-// unsigned int defaultfg = 258;
-// unsigned int defaultbg = 259;
-// unsigned int defaultcs = 256;
 unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
 unsigned int defaultcs = 15;
@@ -250,15 +210,8 @@ ResourcePref resources[] = {
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	// { 0,            		Button4, kscrollup,      {.f = 1} },
-	// { 0,            		Button5, kscrolldown,    {.f = 1} },
 	{ 0,		            Button4, kscrollup,      {.f = 1} },
 	{ 0,		            Button5, kscrolldown,    {.f = 1} },
-
-	// { 0,		            Button4, kscrollup,      {.f = 1},		0, /* !alt */ 0 },
-	// { 0,		            Button5, kscrolldown,    {.f = 1},		0, /* !alt */ 0 },
-
-
 };
 
 /* Internal keyboard shortcuts. */
@@ -267,14 +220,6 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	// { ControlMask,			XK_equal,		zoom,           {.f = +1} },
-	// { ControlMask,			XK_minus,		zoom,           {.f = -1} },
-	// { ControlMask,			XK_0,			zoomreset,      {.f =  0} },
-	// { TERMMOD,				XK_c,           clipcopy,       {.i =  0} },
-	// { TERMMOD,				XK_v,           clippaste,      {.i =  0} },
-	// { MODKEY,            	XK_u,		    kscrollup,      {.f = -0.5} },
-	// { MODKEY,            	XK_d,		    kscrolldown,    {.f = -0.5} },
-
 	{ MODKEY,				XK_equal,		zoom,           {.f = +1} },
 	{ MODKEY,				XK_minus,		zoom,           {.f = -1} },
 	{ MODKEY,				XK_0,			zoomreset,      {.f =  0} },
@@ -282,9 +227,6 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,				XK_v,           clippaste,      {.i =  0} }, 
 	{ MODKEY,            	XK_u,		    kscrollup,      {.f = -0.5} },
 	{ MODKEY,            	XK_d,		    kscrolldown,    {.f = -0.5} },
-	
-	// { MODKEY,               XK_y,           copyurl,        {.i =  0} },
-	// { MODKEY|ShiftMask,     XK_y,           copyurl,        {.i =  1} },
 };
 
 /*
