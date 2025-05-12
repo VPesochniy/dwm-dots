@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-
 export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -13,7 +5,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 # Some automation
 ZSH_HOME="$HOME/.zsh"
-
 if [[ ! -d $ZSH_HOME ]]; then
   echo "\n$ZSH_HOME folder is not configured. Installing plugins...\n"
   mkdir $ZSH_HOME && cd $ZSH_HOME
@@ -24,8 +15,6 @@ if [[ ! -d $ZSH_HOME ]]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
   echo ""
   git clone https://github.com/zsh-users/zsh-autosuggestions.git
-  echo ""
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git
   cd $HOME
   echo "\nAll plugins successfully installed!"
 fi
@@ -186,7 +175,6 @@ alias lan="eza -la -s=newest"
 
 alias v="nvim"
 alias dv="doas nvim"
-alias sv="sudo nvim"
 
 
 alias gs="git status"
@@ -198,8 +186,10 @@ alias gd="git diff"
 
 alias ff="fastfetch"
 alias pf="pfetch"
+alias md="uu-mkdir -p"
 
 # Enabling tools
+eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
 
@@ -207,8 +197,3 @@ eval "$(atuin init zsh)"
 source $ZSH_HOME/fzf-tab/fzf-tab.plugin.zsh
 source $ZSH_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZSH_HOME/powerlevel10k/powerlevel10k.zsh-theme
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

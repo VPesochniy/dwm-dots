@@ -26,7 +26,7 @@ index 15db421..dfcea0f 100644
  
  st: $(OBJ)
 diff --git a/config.mk b/config.mk
-index 069a6c2..977b7c7 100644
+index fdc29a7..6833b3b 100644
 --- a/config.mk
 +++ b/config.mk
 @@ -14,12 +14,14 @@ PKG_CONFIG = pkg-config
@@ -37,7 +37,7 @@ index 069a6c2..977b7c7 100644
 -       `$(PKG_CONFIG) --cflags freetype2`
 +       `$(PKG_CONFIG) --cflags freetype2` \
 +       `$(PKG_CONFIG) --cflags harfbuzz`
- LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft -lXrender\
+ LIBS = -L$(X11LIB) -lm -lrt -lX11 -lutil -lXft \
         `$(PKG_CONFIG) --libs fontconfig` \
 -       `$(PKG_CONFIG) --libs freetype2`
 +       `$(PKG_CONFIG) --libs freetype2` \
@@ -226,7 +226,7 @@ index d9b163e..fbca4ba 100644
  	xfinishdraw();
  	if (ocx != term.ocx || ocy != term.ocy)
 diff --git a/st.h b/st.h
-index 073851a..d0b071d 100644
+index 3cea73b..709a369 100644
 --- a/st.h
 +++ b/st.h
 @@ -10,9 +10,10 @@
@@ -257,7 +257,7 @@ index 6de960d..94679e4 100644
  void xloadcols(void);
  int xsetcolorname(int, const char *);
 diff --git a/x.c b/x.c
-index c497e53..a213e52 100644
+index 25785a6..16d7a3a 100644
 --- a/x.c
 +++ b/x.c
 @@ -18,8 +18,9 @@
@@ -270,7 +270,7 @@ index c497e53..a213e52 100644
  /* types used in config.h */
  typedef struct {
  	uint mod;
-@@ -143,10 +144,11 @@ typedef struct {
+@@ -142,10 +143,11 @@ typedef struct {
  	GC gc;
  } DC;
  
@@ -283,7 +283,7 @@ index c497e53..a213e52 100644
  static void xclear(int, int, int, int);
  static int xgeommasktogravity(int);
  static int ximopen(Display *);
-@@ -760,9 +762,9 @@ xresize(int col, int row)
+@@ -758,9 +760,9 @@ xresize(int col, int row)
  	XftDrawChange(xw.draw, xw.buf);
  	xclear(0, 0, win.w, win.h);
  
@@ -294,7 +294,7 @@ index c497e53..a213e52 100644
  
  ushort
  sixd_to_16bit(int x)
-@@ -1072,8 +1074,11 @@ xunloadfont(Font *f)
+@@ -1063,8 +1065,11 @@ xunloadfont(Font *f)
  
  void
  xunloadfonts(void)
@@ -306,7 +306,7 @@ index c497e53..a213e52 100644
  	while (frclen > 0)
  		XftFontClose(xw.dpy, frc[--frclen].font);
  
-@@ -1203,9 +1208,9 @@ xinit(int cols, int rows)
+@@ -1186,9 +1191,9 @@ xinit(int cols, int rows)
  	XSetForeground(xw.dpy, dc.gc, dc.col[defaultbg].pixel);
  	XFillRectangle(xw.dpy, xw.buf, dc.gc, 0, 0, win.w, win.h);
  
@@ -317,7 +317,7 @@ index c497e53..a213e52 100644
  	/* Xft rendering context */
  	xw.draw = XftDrawCreate(xw.dpy, xw.buf, xw.vis, xw.cmap);
  
-@@ -1257,144 +1262,155 @@ xinit(int cols, int rows)
+@@ -1240,144 +1245,155 @@ xinit(int cols, int rows)
  	if (xsel.xtarget == None)
  		xsel.xtarget = XA_STRING;
  }
@@ -577,7 +577,7 @@ index c497e53..a213e52 100644
  	    width = charlen * win.cw;
  	Color *fg, *bg, *temp, revfg, revbg, truefg, truebg;
  	XRenderColor colfg, colbg;
-@@ -1528,23 +1544,26 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
+@@ -1511,23 +1527,26 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
  void
  xdrawglyph(Glyph g, int x, int y)
  {
@@ -609,7 +609,7 @@ index c497e53..a213e52 100644
  	if (IS_SET(MODE_HIDE))
  		return;
  
-@@ -1676,30 +1695,30 @@ xdrawline(Line line, int x1, int y1, int x2)
+@@ -1659,30 +1678,30 @@ xdrawline(Line line, int x1, int y1, int x2)
  	int i, x, ox, numspecs;
  	Glyph base, new;
  	XftGlyphFontSpec *specs = xw.specbuf;

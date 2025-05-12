@@ -7,12 +7,12 @@
  */
 static char *font = "JetBrainsMono Nerd Font:size=14:style=Bold";
 
-/* Spare fonts */	
+/* Spare fonts */
 static char *font2[] = {
 	"JetBrainsMono Nerd Font:size=14:style=Bold",
 	"Noto Color Emoji:size=14:style=Regular",
 	};
-		
+
 static int borderpx = 2;
 
 /*
@@ -100,9 +100,6 @@ char *termname = "st-256color";
  */
 unsigned int tabspaces = 8;
 
-/* bg opacity */
-float alpha = 0.8;
-
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	[0] = "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
@@ -122,6 +119,7 @@ static const char *colorname[] = {
 	[14] = "#8ec07c", /* cyan    */
 	[15] = "#ebdbb2", /* white   */
 };
+
 
 /*
  * Default colors (colorname index)
@@ -152,7 +150,7 @@ static unsigned int rows = 24;
  * Default colour and shape of the mouse cursor
  */
 static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 15;
+static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 
 /*
@@ -220,11 +218,11 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ MODKEY,				XK_equal,		zoom,           {.f = +1} },
-	{ MODKEY,				XK_minus,		zoom,           {.f = -1} },
-	{ MODKEY,				XK_0,			zoomreset,      {.f =  0} },
-	{ MODKEY,				XK_c,           clipcopy,       {.i =  0} },
-	{ MODKEY,				XK_v,           clippaste,      {.i =  0} }, 
+	{ TERMMOD,				XK_plus,		zoom,           {.f = +1} },
+	{ TERMMOD,				XK_underscore,	zoom,           {.f = -1} },
+	{ TERMMOD,				XK_parenright,	zoomreset,      {.f =  0} },
+	{ TERMMOD,				XK_C,           clipcopy,       {.i =  0} },
+	{ TERMMOD,				XK_V,           clippaste,      {.i =  0} }, 
 	{ MODKEY,            	XK_u,		    kscrollup,      {.f = -0.5} },
 	{ MODKEY,            	XK_d,		    kscrolldown,    {.f = -0.5} },
 };
@@ -509,3 +507,8 @@ char urlchars[] =
 	"abcdefghijklmnopqrstuvwxyz"
 	"0123456789-._~:/?#@!$&'*+,;=%";
 char* urlprefixes[] = {"http://", "https://", NULL};
+
+/*
+ * Open urls starting with urlprefixes, contatining urlchars
+ * by passing as ARG1 to urlhandler.
+ */

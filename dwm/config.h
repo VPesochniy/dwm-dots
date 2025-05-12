@@ -72,10 +72,10 @@ static const char *termcmd[]		= { "st", NULL };
 
 static const char *filemanagercmd[]	= { "st", "-e", "yazi", NULL };
 static const char *browser[]		= { "thorium-browser", NULL };
+static const char *telegram[]		= { "telegram-desktop", NULL };
 static const char *flameshot[]		= { "flameshot", "gui", NULL };
 static const char *obsidian[]		= { "obsidian", NULL };
-static const char *yandex_music[]	= { "yandex-music", NULL };
-static const char *music_player[]	= { "st", "-e", "kew", NULL };
+static const char *player[]			= { "st", "-e", "kew", NULL };
 static const char *code[]			= { "codium", NULL };
 static const char *idea[]			= { "intellij-idea-ultimate-edition", NULL };
 
@@ -93,23 +93,25 @@ static const Key keys[] = {
 	/*	modifier				key				function		argument	*/
 	{ MODKEY,					XK_grave,		quit,			{0} },
 	{ MODKEY,					XK_0,			setlayout,		{0} },
+	{ MODKEY,					XK_q,			view,			{0} },
 	{ MODKEY,					XK_Tab,			viewnext,		{0} },
 	{ MODKEY|ShiftMask,			XK_Tab,			viewprev,		{0} },
 	{ MODKEY|ShiftMask,			XK_0,			tagall,			{0} },
 
 	{ MODKEY,					XK_space,		spawn,			{.v = dmenucmd } },
 	{ MODKEY,					XK_Return,		spawn,			{.v = termcmd } },
-	{ MODKEY,					XK_BackSpace,	spawn,			SHCMD("$HOME/documents/dwm-dots/dmenu/scripts/powermenu.sh") },
+	{ MODKEY,					XK_BackSpace,	spawn,			SHCMD("/usr/local/bin/powermenu.sh") },
 	{ 0,						XK_Print,		spawn,			{.v = flameshot } },
 
 	{ MODKEY,					XK_e,			spawn,			{.v = filemanagercmd } },
 	{ MODKEY,					XK_b,			spawn,			{.v = browser } },
+	{ MODKEY,					XK_m,			spawn,			{.v = telegram } },
 	{ MODKEY,					XK_s,			spawn,			{.v = flameshot } },
 	{ MODKEY,					XK_o,			spawn,			{.v = obsidian } },
-	{ MODKEY,					XK_y,			spawn,			{.v = yandex_music } },
-	{ MODKEY,					XK_m,			spawn,			{.v = music_player } },
+	{ MODKEY,					XK_p,			spawn,			{.v = player } },
 	{ MODKEY,					XK_c,			spawn,			{.v = code } },
 	{ MODKEY,					XK_i,			spawn,			{.v = idea } },
+	{ MODKEY,					XK_n,			spawn,			SHCMD("/usr/local/bin/launcher.sh") },
 
 	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },
 	{ MODKEY,					XK_k,			focusstack,		{.i = -1 } },
@@ -126,8 +128,8 @@ static const Key keys[] = {
 	{ 0,			XF86XK_AudioLowerVolume,	spawn,			SHCMD("wpctl set-volume @DEFAULT_SINK@ 5%- && kill -36 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_AudioMute,			spawn,			SHCMD("wpctl set-mute @DEFAULT_SINK@ toggle && kill -36 $(pidof dwmblocks)") },
 	{ 0,			XF86XK_AudioMicMute,		spawn,			SHCMD("wpctl set-mute @DEFAULT_SOURCE@ toggle && kill -38 $(pidof dwmblocks)") },
-	{ 0,			XF86XK_MonBrightnessUp,		spawn,			SHCMD("brightnessctl set 5%+ && kill -37 $(pidof dwmblocks)") },
-	{ 0,			XF86XK_MonBrightnessDown,	spawn,			SHCMD("brightnessctl set 5%- && kill -37 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_MonBrightnessUp,		spawn,			SHCMD("light -A 5 && kill -37 $(pidof dwmblocks)") },
+	{ 0,			XF86XK_MonBrightnessDown,	spawn,			SHCMD("light -U 5 && kill -37 $(pidof dwmblocks)") },
 	{ 0,			XK_ISO_Next_Group,			spawn,			SHCMD("kill -35 $(pidof dwmblocks)") },
 
 	TAGKEYS(					XK_1,			0 )

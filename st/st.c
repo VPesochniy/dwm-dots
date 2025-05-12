@@ -668,10 +668,6 @@ highlighturls(void)
 {
 	char *match;
 	char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
-
-	
-	
-	
 	for (int i = term.top; i < term.bot; i++) {
 		Line line = TLINE(i);
 		int url_start = -1;
@@ -696,7 +692,6 @@ void
 unhighlighturls(void)
 {
 	for (int i = term.top; i < term.bot; i++) {
-		
 		for (int j = 0; j < term.col; j++) {
 			Glyph* g = &TLINE(i)[j];
 			if (g->mode & ATTR_URL) {
@@ -712,11 +707,7 @@ void
 followurl(int x, int y) {
 	char *linestr = calloc(sizeof(char), term.col+1); /* assume ascii */
 	char *match;
-
 	Line line = TLINE(x);
-	
-
-	
 	for (int i = 0; i < term.col; i++) {
 		if (line[i].u < 127) {
 			linestr[i] = line[i].u;
@@ -1188,15 +1179,13 @@ void
 kscrollup(const Arg *a)
 {
 	float n = a->f;
-	
+
 	if (IS_SET(MODE_ALTSCREEN))
 		return;
 
 	if (n < 0) n = MAX((-n) * term.row, 1);
-
 	if (n > TSCREEN.size - term.row - TSCREEN.off) n = TSCREEN.size - term.row - TSCREEN.off;
 	while (!TLINE((int)-n)) --n;
-
 	TSCREEN.off += n;
 	selscroll(0, n);
 	tfulldirt();
@@ -1205,14 +1194,13 @@ kscrollup(const Arg *a)
 void
 kscrolldown(const Arg *a)
 {
+
 	float n = a->f;
 
 	if (IS_SET(MODE_ALTSCREEN))
 		return;
 
 	if (n < 0) n = MAX((-n) * term.row, 1);
-
-	
 	if (n > TSCREEN.off) n = TSCREEN.off;
 	TSCREEN.off -= n;
 	selscroll(0, -n);
