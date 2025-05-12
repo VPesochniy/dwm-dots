@@ -199,5 +199,5 @@ source $ZSH_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set environment to opencommit
-DWM_HOME="$HOME/dwm-dots"
-source "$DWM_HOME/opencommit/set_oco_env.sh"
+DOTS_HOME="$HOME/dwm-dots"
+source "$DOTS_HOME/opencommit/set_oco_env.sh"
