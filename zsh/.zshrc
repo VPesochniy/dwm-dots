@@ -2,6 +2,7 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export OCO_API_KEY=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
 
 # Some automation
 ZSH_HOME="$HOME/.zsh"
