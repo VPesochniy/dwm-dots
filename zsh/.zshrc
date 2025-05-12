@@ -2,7 +2,6 @@ export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
-export OCO_API_KEY=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
 
 # Some automation
 ZSH_HOME="$HOME/.zsh"
@@ -198,3 +197,7 @@ eval "$(atuin init zsh)"
 source $ZSH_HOME/fzf-tab/fzf-tab.plugin.zsh
 source $ZSH_HOME/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Set environment to opencommit
+DWM_HOME="$HOME/dwm-dots"
+source "$DWM_HOME/opencommit/set_oco_env.sh"

@@ -1,7 +1,6 @@
 OCO_OMIT_SCOPE=false
 OCO_MODEL=openai/gpt-4.1-mini
 OCO_API_URL=https://models.github.ai/inference
-# OCO_API_KEY=https://github.com/settings/tokens
 OCO_AI_PROVIDER=openai
 OCO_TOKENS_MAX_INPUT=8000
 OCO_TOKENS_MAX_OUTPUT=4000
