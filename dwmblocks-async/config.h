@@ -18,14 +18,10 @@
 
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
 #define BLOCKS(X)             \
-    X("  ", "date '+%r'", 1, 0)  \
-    X("   ", "xset q | awk '/LED/ { if ( substr($NF, length($NF)-3, 1) == 1) print \"RU\" ; else print \"EN\"}'", 0, 1) \
-    X("   ", "wpctl get-volume @DEFAULT_SINK@ | awk '{if ($NF == \"[MUTED]\") print \"off\" ; else print $NF * 100 \"%\"}'", 1, 2)   \
-    X("   ", "wpctl get-volume @DEFAULT_SOURCE@ | awk '{if ($NF == \"[MUTED]\") print \"off\" ; else print $NF * 100 \"%\"}'", 1, 4)   \
-    X("   ", "bluetoothctl info | awk '/Battery/ {print $NF}' | sed -e 's/(//' -e 's/)/%/'", 1, 0)   \
-    X("   ", "nmcli device wifi | awk '/^*/ {print $8 \"%\"}'", 5, 0)   \
-    X("󰃠 ", "light | awk '{print int($1) \"%\"}'", 0, 3)   \
-    X("󰁹  ", "echo \"$(cat /sys/class/power_supply/BAT0/capacity)%\"", 5, 0) \
-    X(" ", "date '+%d.%m '", 1, 0) \
+    X("", "/usr/local/bin/lang.sh", 0, 1) \
+    X("", "/usr/local/bin/audio.sh", 1, 2)   \
+    X("", "/usr/local/bin/bt_wifi.sh", 1, 0)   \
+    X("", "/usr/local/bin/backlight_bat.sh", 1, 3) \
+    X("", "/usr/local/bin/datetime.sh", 1, 0) \
 
 #endif  // CONFIG_H
