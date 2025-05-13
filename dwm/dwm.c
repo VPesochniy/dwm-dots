@@ -273,12 +273,9 @@ static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, 
 /* variables */
 static const char broken[] = "broken";
 static char stext[256];
-
 static int statusw;
 static int statussig;
 static pid_t statuspid = -1;
-
-
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh;               /* bar height */
@@ -474,11 +471,7 @@ buttonpress(XEvent *e)
 	Client *c;
 	Monitor *m;
 	XButtonPressedEvent *ev = &e->xbutton;
-
-
 	char *text, *s, ch;
-
-
 	click = ClkRootWin;
 	/* focus monitor if necessary */
 	if ((m = wintomon(ev->window)) && m != selmon) {
@@ -517,8 +510,6 @@ buttonpress(XEvent *e)
 				}
 			}
 		} else
-
-		
 			click = ClkWinTitle;
 	} else if ((c = wintoclient(ev->window))) {
 		focus(c);
@@ -799,10 +790,7 @@ drawbar(Monitor *m)
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
-
 		char *text, *s, ch;
-
-		
 		drw_setscheme(drw, scheme[SchemeNorm]);
 
 		x = 0;
@@ -820,8 +808,6 @@ drawbar(Monitor *m)
 		tw = TEXTW(text) - lrpad + 2;
 		drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
 		tw = statusw;
-
-		
 	}
 
 	for (c = m->clients; c; c = c->next) {
@@ -991,7 +977,6 @@ getatomprop(Client *c, Atom prop)
 	return atom;
 }
 
-
 pid_t
 getstatusbarpid()
 {
@@ -1015,9 +1000,6 @@ getstatusbarpid()
 	pclose(fp);
 	return strtol(buf, NULL, 10);
 }
-
-
-
 
 int
 getrootptr(int *x, int *y)
@@ -1836,7 +1818,6 @@ showhide(Client *c)
 	}
 }
 
-
 void
 sigstatusbar(const Arg *arg)
 {
@@ -1850,7 +1831,6 @@ sigstatusbar(const Arg *arg)
 
 	sigqueue(statuspid, SIGRTMIN+statussig, sv);
 }
-
 
 void
 spawn(const Arg *arg)
@@ -2254,9 +2234,7 @@ void
 updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext))) {
-
-		strcpy(stext, "dwm-"VERSION);
-
+ 		strcpy(stext, "dwm-"VERSION);
 		statusw = TEXTW(stext) - lrpad + 2;
 	} else {
 		char *text, *s, ch;
