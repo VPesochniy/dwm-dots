@@ -6,7 +6,7 @@ static int showbar				= 1;	/* 0 means no bar */
 static int topbar				= 1;	/* 0 means bottom bar */
 
 static char font[]				= "JetBrainsMono Nerd Font:size=14:style=Bold";
-static const char *fonts[]		= { font, "Noto Color Emoji:size=14:style=Regular" };
+static const char *fonts[]		= { font, "Noto Color Emoji:size=13:style=Regular" };
 
 static char normfgcolor[]		= "#ebdbb2";
 static char normbgcolor[]		= "#282828";
@@ -41,7 +41,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact				= 0.5;	/* factor of master area size [0.05..0.95] */
+static float mfact				= 0.55;	/* factor of master area size [0.05..0.95] */
 static int nmaster				= 1;	/* number of clients in master area */
 static int resizehints			= 0;	/* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen	= 1;	/* 1 will force focus on the fullscreen window */
@@ -148,5 +148,4 @@ static const Button buttons[] = {
 	{ ClkTagBar,		0,				Button1,		view,			{0}			},
 	{ ClkTagBar,		ShiftMask,		Button1,		tag,			{0}			},
 	{ ClkTagBar,		ControlMask,	Button1,		toggleview,		{0}			},
-	{ ClkStatusText,	0,				Button1,		sigstatusbar,	{.i = 1}	},
 };
