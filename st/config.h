@@ -225,6 +225,8 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,				XK_v,           clippaste,      {.i =  0} }, 
 	{ MODKEY,            	XK_u,		    kscrollup,      {.f = -0.5} },
 	{ MODKEY,            	XK_d,		    kscrolldown,    {.f = -0.5} },
+	{ MODKEY,            	XK_j,		    kscrolldown,    {.f = -0.1} },
+	{ MODKEY,            	XK_k,		    kscrollup,      {.f = -0.1} },
 };
 
 /*
