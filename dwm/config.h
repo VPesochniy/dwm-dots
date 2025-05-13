@@ -148,4 +148,5 @@ static const Button buttons[] = {
 	{ ClkTagBar,		0,				Button1,		view,			{0}			},
 	{ ClkTagBar,		ShiftMask,		Button1,		tag,			{0}			},
 	{ ClkTagBar,		ControlMask,	Button1,		toggleview,		{0}			},
+	{ ClkStatusText,	0,				Button1,		sigstatusbar,	{.i = 1}	},
 };

@@ -2274,8 +2274,6 @@ updatestatus(void)
 		statusw += TEXTW(text) - lrpad + 2;
 
 	}
-
-		
 	drawbar(selmon);
 }
 
