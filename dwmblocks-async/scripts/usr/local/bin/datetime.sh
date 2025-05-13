@@ -15,10 +15,4 @@ fi
 
 case $BLOCK_BUTTON in
     1) echo hi ;;
-    # if [[ $current_state = "date" ]]; then
-    #     echo "time" > $state
-    # else
-    #     echo "date" > $state
-    # fi
-    # ;;
 esac

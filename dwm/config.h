@@ -75,9 +75,10 @@ static const char *browser[]		= { "thorium-browser", NULL };
 static const char *telegram[]		= { "telegram-desktop", NULL };
 static const char *flameshot[]		= { "flameshot", "gui", NULL };
 static const char *obsidian[]		= { "obsidian", NULL };
-static const char *player[]			= { "st", "-e", "kew", NULL };
-static const char *code[]			= { "codium", NULL };
-static const char *idea[]			= { "intellij-idea-ultimate-edition", NULL };
+static const char *music_player[]	= { "st", "-e", "kew", NULL };
+static const char *vscode[]			= { "codium", NULL };
+static const char *intellij_idea[]	= { "intellij-idea-ultimate-edition", NULL };
+static const char *neovim[]			= { "st", "-e", "nvim", NULL };
 
 ResourcePref resources[] = {
 		{ "font",				STRING,		&font },
@@ -108,9 +109,10 @@ static const Key keys[] = {
 	{ MODKEY,					XK_m,			spawn,			{.v = telegram } },
 	{ MODKEY,					XK_s,			spawn,			{.v = flameshot } },
 	{ MODKEY,					XK_o,			spawn,			{.v = obsidian } },
-	{ MODKEY,					XK_p,			spawn,			{.v = player } },
-	{ MODKEY,					XK_c,			spawn,			{.v = code } },
-	{ MODKEY,					XK_i,			spawn,			{.v = idea } },
+	{ MODKEY,					XK_p,			spawn,			{.v = music_player } },
+	{ MODKEY,					XK_c,			spawn,			{.v = vscode } },
+	{ MODKEY,					XK_i,			spawn,			{.v = intellij_idea } },
+	{ MODKEY,					XK_v,			spawn,			{.v = neovim } },
 	{ MODKEY,					XK_n,			spawn,			SHCMD("/usr/local/bin/launcher.sh") },
 
 	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },

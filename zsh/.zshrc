@@ -1,4 +1,4 @@
-export EDITOR=nvim
+export EDITOR="nvim"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -41,12 +41,26 @@ bindkey -r "^[b" # Remove 'Alt + B' binding
 
 # Run zoxide in interactive mode
 function _run-cdi {
-  result="$(zoxide query -i)"
-  BUFFER="cd ${(q-)result}"
+  result=$(zoxide query -i)
+  if [[ -n $result ]]; then
+    BUFFER="cd ${(q-)result}"
+  else
+    BUFFER=""
+  fi
   zle redisplay
 }
 zle -N _run-cdi
-bindkey "^[f" _run-cdi # Alt + F
+bindkey "^[g" _run-cdi # Alt + G
+
+# Open file using fzf
+function _run-fzf-nvim {
+  selected_file=$(fd --type file --hidden --exclude .git | fzf --preview 'bat --style=numbers --color=always --theme=gruvbox-dark {}')
+  if [[ -n $selected_file ]]; then
+    $EDITOR $selected_file
+  fi
+}
+zle -N _run-fzf-nvim
+bindkey "^[f" _run-fzf-nvim # Alt + F
 
 # Mapping to run Rust coreutils by default
 alias arch="uu-arch"

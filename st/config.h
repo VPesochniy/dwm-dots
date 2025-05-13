@@ -10,7 +10,7 @@ static char *font = "JetBrainsMono Nerd Font:size=14:style=Bold";
 /* Spare fonts */
 static char *font2[] = {
 	"JetBrainsMono Nerd Font:size=14:style=Bold",
-	"Noto Color Emoji:size=13:style=Regular",
+	"Noto Color Emoji:size=12:style=Regular",
 	};
 
 static int borderpx = 2;
