@@ -214,4 +214,4 @@ source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Set environment to opencommit
 DOTS_HOME="$HOME/dwm-dots"
-source "$DOTS_HOME/opencommit/set_oco_env.sh"
+source "$DOTS_HOME/opencommit/set_env.sh"

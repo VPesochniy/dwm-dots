@@ -1,3 +1,3 @@
 *.orig
 *.rej
-set_oco_env.sh
+set_env.sh

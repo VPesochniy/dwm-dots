@@ -46,3 +46,4 @@ require("nvim-tree").setup()
 require("nvim-autopairs").setup {}
 require("Comment").setup()
 require'colorizer'.setup()
+require("config.keybinds")

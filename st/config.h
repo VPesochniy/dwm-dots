@@ -218,15 +218,15 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ MODKEY,				XK_equal,		zoom,           {.f = +1} },
-	{ MODKEY,				XK_minus,		zoom,           {.f = -1} },
-	{ MODKEY,				XK_0,			zoomreset,      {.f =  0} },
-	{ MODKEY,				XK_c,           clipcopy,       {.i =  0} },
-	{ MODKEY,				XK_v,           clippaste,      {.i =  0} }, 
-	{ MODKEY,            	XK_u,		    kscrollup,      {.f = -0.5} },
-	{ MODKEY,            	XK_d,		    kscrolldown,    {.f = -0.5} },
-	{ MODKEY,            	XK_j,		    kscrolldown,    {.f = -0.1} },
-	{ MODKEY,            	XK_k,		    kscrollup,      {.f = -0.1} },
+	{ TERMMOD,				XK_plus,		zoom,           {.f = +1} },
+	{ TERMMOD,				XK_underscore,	zoom,           {.f = -1} },
+	{ TERMMOD,				XK_parenright,	zoomreset,      {.f =  0} },
+	{ TERMMOD,				XK_C,           clipcopy,       {.i =  0} },
+	{ TERMMOD,				XK_V,           clippaste,      {.i =  0} }, 
+	{ TERMMOD,            	XK_U,		    kscrollup,      {.f = -0.5} },
+	{ TERMMOD,            	XK_D,		    kscrolldown,    {.f = -0.5} },
+	{ TERMMOD,            	XK_J,		    kscrolldown,    {.f = -0.1} },
+	{ TERMMOD,            	XK_K,		    kscrollup,      {.f = -0.1} },
 };
 
 /*
