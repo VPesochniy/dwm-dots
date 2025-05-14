@@ -94,7 +94,7 @@ static const Key keys[] = {
 	/*	modifier				key				function		argument	*/
 	{ MODKEY,					XK_grave,		quit,			{0} },
 	{ MODKEY,					XK_0,			setlayout,		{0} },
-	{ MODKEY,					XK_q,			view,			{0} },
+	{ Mod1Mask,					XK_Tab,			view,			{0} },
 	{ MODKEY,					XK_Tab,			viewnext,		{0} },
 	{ MODKEY|ShiftMask,			XK_Tab,			viewprev,		{0} },
 	{ MODKEY|ShiftMask,			XK_0,			tagall,			{0} },
@@ -113,7 +113,6 @@ static const Key keys[] = {
 	{ MODKEY,					XK_c,			spawn,			{.v = vscode } },
 	{ MODKEY,					XK_i,			spawn,			{.v = intellij_idea } },
 	{ MODKEY,					XK_v,			spawn,			{.v = neovim } },
-	{ MODKEY,					XK_n,			spawn,			SHCMD("/usr/local/bin/launcher.sh") },
 
 	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },
 	{ MODKEY,					XK_k,			focusstack,		{.i = -1 } },
