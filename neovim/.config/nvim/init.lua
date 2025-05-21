@@ -1,3 +1,7 @@
+
+
+-- visit https://github.com/rockerBOO/awesome-neovim
+
 local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
@@ -6,44 +10,46 @@ Plug('sainnhe/gruvbox-material')
 Plug('folke/which-key.nvim')
 Plug('nvim-lualine/lualine.nvim')
 Plug('nvim-tree/nvim-web-devicons')
-Plug('romgrk/barbar.nvim')
 Plug('goolord/alpha-nvim')
-Plug('nvim-tree/nvim-tree.lua')
+-- Plug('nvim-tree/nvim-tree.lua')
 Plug('lewis6991/gitsigns.nvim')
 Plug('windwp/nvim-autopairs')
 Plug('numToStr/Comment.nvim')
 Plug('norcalli/nvim-colorizer.lua')
-Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
+Plug('nvim-lua/plenary.nvim')
+Plug('folke/noice.nvim')
+Plug('MunifTanjim/nui.nvim')
+Plug('nvim-neo-tree/neo-tree.nvim')
+Plug('ThePrimeagen/vim-be-good')
+Plug('mg979/vim-visual-multi')
+Plug('neovim/nvim-lspconfig')
+Plug('hrsh7th/cmp-nvim-lsp')
+Plug('hrsh7th/nvim-cmp')
+Plug('mason-org/mason.nvim')
+Plug('mason-org/mason-lspconfig.nvim')
+Plug('mfussenegger/nvim-jdtls')
+Plug('ThePrimeagen/harpoon')
+Plug('mbbill/undotree')
+Plug('mfussenegger/nvim-dap')
+Plug('echasnovski/mini.ai')
 vim.call('plug#end')
 
-vim.g.gruvbox_material_background = 'hard'
-vim.g.gruvbox_material_palette = 'original'
-vim.g.gruvbox_material_enable_italic = 1
-vim.cmd 'colorscheme gruvbox-material'
+require('config.options')
+require('config.keybinds')
 
-vim.wo.relativenumber = true
-vim.wo.number = true
-
-vim.opt.clipboard = 'unnamedplus'
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
-require('lualine').setup {
-    options = { theme  = 'gruvbox_dark' },
-}
-
-require'alpha'.setup(require'alpha.themes.dashboard'.config)
-
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.opt.termguicolors = true
-vim.opt.cursorline = true
-vim.opt.shiftwidth = 4
-
-require("nvim-tree").setup()
-require("nvim-autopairs").setup {}
-require("Comment").setup()
-require'colorizer'.setup()
-require("config.keybinds")
+require('plugins.colorscheme')
+require('plugins.lualine')
+-- require('plugins.nvim-tree')
+require('plugins.comment')
+require('plugins.autopairs')
+require('plugins.colorizer')
+require('plugins.noice')
+require('plugins.alpha')
+require('plugins.neotree')
+require('plugins.lsp')
+require('plugins.harpoon')
+require('plugins.vim-visual-multi')
+require('plugins.mini-ai')
+require('plugins.treesitter')
+-- require('plugins.nvim-dap')

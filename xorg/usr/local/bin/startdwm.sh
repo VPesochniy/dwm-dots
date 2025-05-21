@@ -17,7 +17,7 @@ dwmblocks &
 /usr/bin/wireplumber &
 # sxhkd &
 redshift &
-flameshot &
+# flameshot &
 libinput-gestures &
 yandex-disk start
 numlockx on

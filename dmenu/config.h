@@ -14,7 +14,7 @@ static const char *prompt				= NULL;	/* prompt to the left of input field */
 static const char worddelimiters[] 		= " ";
 
 static char font[]						= "JetBrainsMono Nerd Font:size=14:style=Bold";
-static const char *fonts[]				= { font, "Noto Color Emoji:size=13:style=Regular" };
+static const char *fonts[]				= { font, "Noto Color Emoji:size=14:style=Regular" };
 
 static const char *colors[SchemeLast][2] = {
 	/*					fg			bg			*/

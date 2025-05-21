@@ -6,7 +6,7 @@ static int showbar				= 1;	/* 0 means no bar */
 static int topbar				= 1;	/* 0 means bottom bar */
 
 static char font[]				= "JetBrainsMono Nerd Font:size=14:style=Bold";
-static const char *fonts[]		= { font, "Noto Color Emoji:size=13:style=Regular" };
+static const char *fonts[]		= { font, "Noto Color Emoji:size=14:style=Regular" };
 
 static char normfgcolor[]		= "#ebdbb2";
 static char normbgcolor[]		= "#282828";
