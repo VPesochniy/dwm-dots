@@ -1,5 +1,4 @@
 
-
 -- visit https://github.com/rockerBOO/awesome-neovim
 
 local Plug = vim.fn['plug#']
@@ -18,7 +17,7 @@ Plug('numToStr/Comment.nvim')
 Plug('norcalli/nvim-colorizer.lua')
 Plug('nvim-telescope/telescope.nvim')
 Plug('nvim-lua/plenary.nvim')
-Plug('folke/noice.nvim')
+-- Plug('folke/noice.nvim')
 Plug('MunifTanjim/nui.nvim')
 Plug('nvim-neo-tree/neo-tree.nvim')
 Plug('ThePrimeagen/vim-be-good')
@@ -33,6 +32,7 @@ Plug('ThePrimeagen/harpoon')
 Plug('mbbill/undotree')
 Plug('mfussenegger/nvim-dap')
 Plug('echasnovski/mini.ai')
+Plug('mrcjkb/rustaceanvim')
 vim.call('plug#end')
 
 require('config.options')
@@ -44,7 +44,7 @@ require('plugins.lualine')
 require('plugins.comment')
 require('plugins.autopairs')
 require('plugins.colorizer')
-require('plugins.noice')
+-- require('plugins.noice')
 require('plugins.alpha')
 require('plugins.neotree')
 require('plugins.lsp')
@@ -52,4 +52,5 @@ require('plugins.harpoon')
 require('plugins.vim-visual-multi')
 require('plugins.mini-ai')
 require('plugins.treesitter')
+require('plugins.telescope')
 -- require('plugins.nvim-dap')

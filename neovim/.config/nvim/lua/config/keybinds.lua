@@ -1,12 +1,15 @@
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
 local keymap = vim.keymap.set
 
 -- Center screen while moving
-keymap('n', '<c-u>', '<c-u>zz')
+keymap('n', '<C-u>', '<C-u>zz')
+keymap('n', '<C-d>', '<C-d>zz')
 
 -- turn off highlighting for the previous search
-keymap('n', '<esc>', '<cmd>nohlsearch<cr>')
-keymap('n', '<c-c>', '<cmd>nohlsearch<cr>')
+keymap('n', '<Esc>', '<Cmd>nohlsearch<Cr>')
+keymap('n', '<C-c>', '<Cmd>nohlsearch<Cr>')
 
 -- disable copying to the clipboard
 keymap({ 'n', 'v' }, 'd', '"_d')
@@ -15,7 +18,6 @@ keymap({ 'n', 'v' }, 'c', '"_c')
 keymap({ 'n', 'v' }, 'C', '"_C')
 
 -- move focus to the window
-keymap('n', '<c-d>', '<c-d>zz')
 keymap('n', '<C-h>', '<C-w><C-h>')
 keymap('n', '<C-l>', '<C-w><C-l>')
 keymap('n', '<C-j>', '<C-w><C-j>')
@@ -31,11 +33,14 @@ keymap('t', '<Esc><Esc>', '<C-\\><C-n>')
 keymap('i', 'kj', '<Esc>')
 
 keymap('n', '<leader>e', '<Cmd>Neotree reveal<CR>')
+-- keymap('n', '<leader>e', '<Cmd>NvimTreeToggle<CR>')
 
 keymap('n', '<leader>ff', '<Cmd>Telescope find_files<CR>')
 keymap('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>')
-keymap('n', '<leader>fb', '<Cmd>Telescope buffers<CR>')
 keymap('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>')
+keymap('n', '<leader>fd', '<Cmd>Telescope diagnostics<CR>', { desc = '[F]ind [D]iagnostics' })
+            -- set a vim motion to <Space> + f + r to resume the previous search
+keymap('n', '<leader>fr', '<Cmd>Telescope resume<CR>', { desc = '[F]inder [R]esume' })
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -61,7 +66,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 keymap("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>")
 
 -- Toggle Harpoon UI
-keymap("n", "<C-e>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
+keymap("n", "<Tab>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
 keymap("n", "<C-n>", "<cmd>lua require('harpoon.ui').nav_next()<CR>")
 keymap("n", "<C-p>", "<cmd>lua require('harpoon.ui').nav_prev()<CR>")
 
@@ -76,3 +81,12 @@ keymap('v', '<leader>crv', "<Esc><Cmd>lua require('jdtls').extract_variable(true
 keymap('n', '<leader>crc', "<Cmd>lua require('jdtls').extract_constant()<CR>", { desc = 'Extract Constant' })
 keymap('v', '<leader>crc', "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", { desc = 'Extract Constant' })
 keymap('v', '<leader>crm', "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", { desc = 'Extract Method' })
+
+-- Easily split windows
+vim.keymap.set("n", "<leader>v", ":vsplit<cr>", { desc = "[W]indow Split [V]ertical" })
+-- vim.keymap.set("n", "<leader>h", ":split<cr>", { desc = "[W]indow Split [H]orizontal" })
+
+-- Stay in indent mode
+keymap("v", "<", "<gv", { desc = "Indent left in visual mode" })
+keymap("v", ">", ">gv", { desc = "Indent right in visual mode" })
+keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })

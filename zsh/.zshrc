@@ -37,7 +37,17 @@ bindkey "^a" beginning-of-line # Ctrl + A
 bindkey "^e" end-of-line # Ctrl + E
 bindkey "^f" forward-word # Ctrl + F
 bindkey "^b" backward-word # Ctrl + B
-bindkey -r "^[b" # Remove 'Alt + B' binding
+
+# bindkey "^[f" forward-char # Alt + F
+# bindkey "^[b" backward-char # Alt + B
+
+bindkey "^h" vi-backward-char # Ctrl + H
+bindkey "^j" down-line-or-history # Ctrl + J
+bindkey "^k" atuin-up-search-viins # Ctrl + K
+bindkey "^l" vi-forward-char # Ctrl + L
+
+# Get the keybind
+# bindkey "^[v" .describe-key-briefly # Alt + V
 
 # Run zoxide in interactive mode
 function _run-cdi {
@@ -50,17 +60,6 @@ function _run-cdi {
   zle redisplay
 }
 zle -N _run-cdi
-bindkey "^[g" _run-cdi # Alt + G
-
-# Open file using fzf
-function _run-fzf-nvim {
-  selected_file=$(fd --type file --hidden --exclude .git | fzf --preview 'bat --style=numbers --color=always --theme=gruvbox-dark {}')
-  if [[ -n $selected_file ]]; then
-    $EDITOR $selected_file
-  fi
-}
-zle -N _run-fzf-nvim
-bindkey "^[f" _run-fzf-nvim # Alt + F
 
 # Mapping to run Rust coreutils by default
 alias arch="uu-arch"
@@ -206,6 +205,7 @@ alias md="uu-mkdir -p"
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
+bindkey "^r" _run-cdi # Ctrl + R
 
 # Enabling plugins
 source $ZSH_HOME/fzf-tab/fzf-tab.plugin.zsh
