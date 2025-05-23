@@ -97,7 +97,7 @@ keymap("v", ">", ">gv", { desc = "Indent right in visual mode" })
 keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
-keymap("v", "k", ":m '<-2<cr>gv=gv", { silent = true })
+keymap("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 keymap("n", "=ap", "ma=ap'a")
 
 local Terminal = require('toggleterm.terminal').Terminal
