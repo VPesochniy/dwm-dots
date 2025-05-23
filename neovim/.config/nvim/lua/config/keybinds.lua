@@ -57,7 +57,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         keymap('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         keymap({ 'n', 'x' }, '<leader>l', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
         keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-        keymap('n', '<C-CR>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
     end,
 })
 

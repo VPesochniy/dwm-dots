@@ -40,9 +40,6 @@ bindkey "^e" end-of-line # Ctrl + E
 bindkey "^f" forward-word # Ctrl + F
 bindkey "^b" backward-word # Ctrl + B
 
-# bindkey "^[f" forward-char # Alt + F
-# bindkey "^[b" backward-char # Alt + B
-
 bindkey "^h" vi-backward-char # Ctrl + H
 bindkey "^j" down-line-or-history # Ctrl + J
 bindkey "^k" atuin-up-search-viins # Ctrl + K
@@ -199,7 +196,7 @@ alias gc="git commit"
 alias gd="git diff"
 
 
-alias ff="fastfetch"
+alias ff="fastfetch -c examples/13.jsonc"
 alias pf="pfetch"
 alias md="uu-mkdir -p"
 
