@@ -106,7 +106,7 @@ local lazygit  = Terminal:new({
     cmd = "lazygit",
     hidden = true,
     direction = "float",
-    on_open = function(term)
+    on_open = function()
         vim.cmd("startinsert!")
     end,
 })
@@ -114,7 +114,7 @@ local lazygit  = Terminal:new({
 local float_term = Terminal:new({
   hidden = true,
   direction = "float",
-  on_open = function(term)
+  on_open = function()
     vim.cmd("startinsert!")
   end,
 })
