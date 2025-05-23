@@ -27,7 +27,7 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.mouse = "a"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.updatetime = 100
 

@@ -101,6 +101,7 @@ keymap("v", "k", ":m '<-2<cr>gv=gv", { silent = true })
 keymap("n", "=ap", "ma=ap'a")
 
 local Terminal = require('toggleterm.terminal').Terminal
+
 local lazygit  = Terminal:new({
     cmd = "lazygit",
     hidden = true,
@@ -110,8 +111,21 @@ local lazygit  = Terminal:new({
     end,
 })
 
+local float_term = Terminal:new({
+  hidden = true,
+  direction = "float",
+  on_open = function(term)
+    vim.cmd("startinsert!")
+  end,
+})
+
+function _float_term_toggle()
+  float_term:toggle()
+end
+
 function _lazygit_toggle()
     lazygit:toggle()
 end
 
 vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua _float_term_toggle()<CR>", { noremap = true })
