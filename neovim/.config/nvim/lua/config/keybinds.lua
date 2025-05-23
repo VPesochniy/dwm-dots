@@ -7,6 +7,7 @@ keymap('n', '<C-u>', '<C-u>zz')
 keymap('n', '<C-d>', '<C-d>zz')
 keymap("n", "n", "nzzzv")
 keymap("n", "N", "Nzzzv")
+keymap("n", "G", "Gzz")
 
 -- turn off highlighting for the previous search
 keymap('n', '<Esc>', '<Cmd>nohlsearch<Cr>')
@@ -35,8 +36,14 @@ keymap('i', '<C-c>', '<Esc>')
 
 keymap('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 
-keymap('n', '<leader>ff', '<Cmd>Telescope find_files<CR>')
-keymap('n', '<leader>fg', '<Cmd>Telescope live_grep<CR>')
+keymap('n', '<leader>ff', '<Cmd>Telescope find_files hidden=true no_ignore=true<CR>')
+
+vim.keymap.set('n', '<leader>fg', function()
+    require('telescope.builtin').live_grep({
+        additional_args = { "--hidden", "--no-ignore" }
+    })
+end, { desc = 'Live Grep (hidden and no-ignore)' })
+
 keymap('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>')
 keymap('n', '<leader>fd', '<Cmd>Telescope diagnostics<CR>', { desc = '[F]ind [D]iagnostics' })
 
@@ -72,6 +79,7 @@ keymap("n", "<C-p>", "<cmd>lua require('harpoon.ui').nav_prev()<CR>")
 
 keymap("n", "<leader>u", vim.cmd.UndotreeToggle)
 keymap("n", "<leader>tt", vim.cmd.ToggleTerm)
+keymap("n", "<leader>tn", vim.cmd.TermNew)
 
 keymap('n', '<leader>co', "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = 'Organize Imports' })
 keymap('n', '<leader>crv', "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = 'Extract Variable' })
@@ -88,6 +96,22 @@ keymap("v", "<", "<gv", { desc = "Indent left in visual mode" })
 keymap("v", ">", ">gv", { desc = "Indent right in visual mode" })
 keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+keymap("v", "k", ":m '<-2<cr>gv=gv", { silent = true })
 keymap("n", "=ap", "ma=ap'a")
+
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit  = Terminal:new({
+    cmd = "lazygit",
+    hidden = true,
+    direction = "float",
+    on_open = function(term)
+        vim.cmd("startinsert!")
+    end,
+})
+
+function _lazygit_toggle()
+    lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true })
