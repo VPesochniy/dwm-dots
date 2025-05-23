@@ -21,6 +21,7 @@ vim.opt.signcolumn = 'yes'
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.backup = false
+vim.opt.swapfile = false
 vim.opt.conceallevel = 0
 vim.opt.fileencoding = "utf-8"
 vim.opt.mouse = "a"
@@ -29,7 +30,6 @@ vim.opt.splitright = true
 vim.opt.timeoutlen = 300
 vim.opt.undofile = true
 vim.opt.updatetime = 100
-vim.opt.writebackup = false
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true

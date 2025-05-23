@@ -33,6 +33,8 @@ stty -ixon <$TTY >$TTY # Fix 'Ctrl + S' Modifier
 
 # Bindings
 bindkey '^ ' autosuggest-accept # Ctrl + Space
+bindkey '^q' clear-screen # Ctrl + Q
+
 bindkey "^a" beginning-of-line # Ctrl + A
 bindkey "^e" end-of-line # Ctrl + E
 bindkey "^f" forward-word # Ctrl + F
@@ -47,7 +49,7 @@ bindkey "^k" atuin-up-search-viins # Ctrl + K
 bindkey "^l" vi-forward-char # Ctrl + L
 
 # Get the keybind
-# bindkey "^[v" .describe-key-briefly # Alt + V
+bindkey "^[v" .describe-key-briefly # Alt + V
 
 # Run zoxide in interactive mode
 function _run-cdi {
@@ -205,6 +207,7 @@ alias md="uu-mkdir -p"
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(atuin init zsh)"
+eval "$(docker completion zsh)"
 bindkey "^r" _run-cdi # Ctrl + R
 
 # Enabling plugins
