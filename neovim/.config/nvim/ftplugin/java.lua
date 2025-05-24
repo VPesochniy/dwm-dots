@@ -1,7 +1,7 @@
 local home = os.getenv("HOME")
-local mason_path = home .. "/.local/share/nvim/mason/packages/"
-local lombok_path = mason_path .. "/jdtls/lombok.jar"
-local workspace_folder = home .. "/.jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local mason_packages = home .. "/.local/share/nvim/mason/packages/"
+local lombok = mason_packages .. "jdtls/lombok.jar"
+local project_cache = home .. "/.jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local config = {
     cmd = {
@@ -11,15 +11,15 @@ local config = {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-javaagent:" .. lombok_path,
+        "-javaagent:" .. lombok,
         "-Xms512m",
         "-Xmx1024m",
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
-        "-jar", vim.fn.glob(mason_path .. "/jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
-        "-configuration", mason_path .. "/jdtls/config_linux",
-        "-data", workspace_folder,
+        "-jar", vim.fn.glob(mason_packages .. "jdtls/plugins/org.eclipse.equinox.launcher_*.jar"),
+        "-configuration", mason_packages .. "jdtls/config_linux",
+        "-data", project_cache,
     },
 
     root_dir = vim.fs.dirname(vim.fs.find({ "gradlew", ".git", "mvnw" }, { upward = true })[1]),
@@ -27,19 +27,12 @@ local config = {
     init_options = {
         bundles = {
             vim.fn.glob(
-                mason_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
+                mason_packages .. "java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
         },
-    },
-    settings = {
-        java = {
-            format = {
-                enabled = true
-            }
-        }
     },
 }
 
-local test_bundles = vim.split(vim.fn.glob(mason_path .. "/java-test/extension/server/*.jar", 1), "\n")
+local test_bundles = vim.split(vim.fn.glob(mason_packages .. "java-test/extension/server/*.jar", 1), "\n")
 vim.list_extend(config.init_options.bundles, test_bundles)
 
 require("jdtls").start_or_attach(config)

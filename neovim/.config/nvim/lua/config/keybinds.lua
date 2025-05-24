@@ -114,7 +114,7 @@ keymap('n', '<leader>jdc', "<Cmd>lua require'dap'.continue()<CR>")
 keymap('n', '<leader>jdb', "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
 
 -- Easily split windows
-vim.keymap.set("n", "<leader>v", ":vsplit<cr>", { desc = "[W]indow Split [V]ertical" })
+keymap("n", "<leader>v", ":vsplit<cr>", { desc = "[W]indow Split [V]ertical" })
 
 -- Stay in indent mode
 keymap("v", "<", "<gv", { desc = "Indent left in visual mode" })
@@ -152,5 +152,27 @@ function _lazygit_toggle()
     lazygit:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<leader>tf", "<cmd>lua _float_term_toggle()<CR>", { noremap = true })
+keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true })
+keymap("n", "<leader>tf", "<cmd>lua _float_term_toggle()<CR>", { noremap = true })
+
+keymap("n", "<C-S-h>", "<Cmd>vertical resize +2<CR>", { silent = true })
+keymap("n", "<C-S-j>", "<Cmd>resize +2<CR>", { silent = true })
+keymap("n", "<C-S-k>", "<Cmd>resize -2<CR>", { silent = true })
+keymap("n", "<C-S-l>", "<Cmd>vertical resize -2<CR>", { silent = true })
+
+keymap("i", "<C-h>", "<Left>")
+keymap("i", "<C-j>", "<Down>")
+keymap("i", "<C-k>", "<Up>")
+keymap("i", "<C-l>", "<Right>")
+
+keymap("i", "<C-a>", "<Home>")
+keymap("i", "<C-e>", "<End>")
+
+keymap("i", "<C-f>", "<Esc>ea")
+keymap("i", "<C-b>", "<Esc>bi")
+
+keymap("i", "<C-u>", "<C-o>u")
+keymap("i", "<C-r>", "<C-o><C-r>")
+
+keymap("i", "<C-S-h>", "<BS>")
+keymap("i", "<C-S-l>", "<Del>")
