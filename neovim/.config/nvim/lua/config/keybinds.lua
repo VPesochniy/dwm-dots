@@ -28,6 +28,9 @@ keymap('n', '<C-k>', '<C-w><C-k>')
 -- Close window
 keymap('n', '<C-q>', '<C-w>q')
 
+-- Move window to another tab
+keymap('n', '<C-t>', '<C-w>T')
+
 -- Double 'Esc' for exit terminal mode
 keymap('t', '<Esc><Esc>', '<C-\\><C-n>')
 
@@ -160,19 +163,4 @@ keymap("n", "<C-S-j>", "<Cmd>resize +2<CR>", { silent = true })
 keymap("n", "<C-S-k>", "<Cmd>resize -2<CR>", { silent = true })
 keymap("n", "<C-S-l>", "<Cmd>vertical resize -2<CR>", { silent = true })
 
-keymap("i", "<C-h>", "<Left>")
-keymap("i", "<C-j>", "<Down>")
-keymap("i", "<C-k>", "<Up>")
-keymap("i", "<C-l>", "<Right>")
-
-keymap("i", "<C-a>", "<Home>")
-keymap("i", "<C-e>", "<End>")
-
-keymap("i", "<C-f>", "<Esc>ea")
-keymap("i", "<C-b>", "<Esc>bi")
-
-keymap("i", "<C-u>", "<C-o>u")
-keymap("i", "<C-r>", "<C-o><C-r>")
-
-keymap("i", "<C-S-h>", "<BS>")
-keymap("i", "<C-S-l>", "<Del>")
+keymap("i", "<C-l>", "<Del>")
