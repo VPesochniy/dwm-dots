@@ -1,16 +1,12 @@
--- -- Указываем путь к установленному VSCodium-расширению Spring Boot Tools
--- vim.g.spring_boot = {
---   jdt_extensions_path = "~/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal",
---   -- (необязательно) можно явно задать список jar-файлов расширений:
---   jdt_extensions_jars = {
---     "io.projectreactor.reactor-core.jar",
---     "org.reactivestreams.reactive-streams.jar",
---     "jdt-ls-commons.jar",
---     "jdt-ls-extension.jar",
---   },
--- }
--- Настраиваем сам плагин Spring Boot
+local M = {}
+
+local home = os.getenv("HOME")
+local spring_tools_path = vim.fn.glob(home .. "/.vscode-oss/extensions/vmware.vscode-spring-boot-*-universal/")
+
 require("spring_boot").setup({
-  ls_path = "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/language-server/spring-boot-language-server-1.62.0-SNAPSHOT-exec.jar",
-  jdt_extensions_path = "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars",
+    ls_path = vim.fn.glob(spring_tools_path .. "language-server/spring-boot-language-server-*-SNAPSHOT-exec.jar"),
 })
+
+M.jars = vim.split(vim.fn.glob(spring_tools_path .. "jars/*.jar", 1), "\n")
+
+return M

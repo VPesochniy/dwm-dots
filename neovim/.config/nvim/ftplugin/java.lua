@@ -35,22 +35,7 @@ local config = {
 local test_bundles = vim.split(vim.fn.glob(mason_packages .. "java-test/extension/server/*.jar", 1), "\n")
 vim.list_extend(config.init_options.bundles, test_bundles)
 
-local spring_boot_jars = {
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/jdt-ls-extension.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/jdt-ls-commons.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/commons-lsp-extensions.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/io.projectreactor.reactor-core.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/org.reactivestreams.reactive-streams.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/sts-gradle-tooling.jar",
-  "/home/vpesochniy/.vscode-oss/extensions/vmware.vscode-spring-boot-1.62.0-universal/jars/xml-ls-extension.jar",
-}
 
-vim.list_extend(config.init_options.bundles, spring_boot_jars)
-
-print("Spring Boot extensions:")
-print(vim.inspect(require("spring_boot").java_extensions()))
-
-print("Final bundle list:")
-print(vim.inspect(config.init_options.bundles))
+vim.list_extend(config.init_options.bundles, require("plugins.spring-boot").jars)
 
 require("jdtls").start_or_attach(config)
