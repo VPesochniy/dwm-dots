@@ -1,7 +1,7 @@
 local home = os.getenv("HOME")
 local mason_path = home .. "/.local/share/nvim/mason/packages/"
 local lombok_path = mason_path .. "/jdtls/lombok.jar"
-local google_java_format_path = mason_path .. "/google_java_format/google-java-format-*-all-deps.jar"
+local google_java_format_path = mason_path .. "/google-java-format/google-java-format-*-all-deps.jar"
 local workspace_folder = home .. "/.jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local config = {
@@ -13,11 +13,9 @@ local config = {
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
         "-javaagent:" .. lombok_path,
-        -- "-javaagent:" .. google_java_format_path,
-        -- "-Xbootclasspath/a:" .. lombok_path,
-        -- "-Xms512m",
-        "-Xmx1g",
-        -- "-Xmx1024m",
+        "-Xms512m",
+        -- "-Xmx1g",
+        "-Xmx1024m",
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
@@ -33,6 +31,13 @@ local config = {
             vim.fn.glob(
                 mason_path .. "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
         },
+    },
+    settings = {
+        java = {
+            format = {
+                enabled = false -- иногда требуется для jdtls
+            }
+        }
     },
 }
 
