@@ -16,9 +16,6 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
   handlers = {
     function(server_name)
-	-- if server_name == 'jdtls' or server_name == 'rust_analyzer' then
-	-- 	return
-	-- end
       require('lspconfig')[server_name].setup({})
     end,
   }

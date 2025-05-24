@@ -1,4 +1,3 @@
-
 -- visit https://github.com/rockerBOO/awesome-neovim
 
 local Plug = vim.fn['plug#']
@@ -30,9 +29,14 @@ Plug('mfussenegger/nvim-jdtls')
 Plug('ThePrimeagen/harpoon')
 Plug('mbbill/undotree')
 Plug('mfussenegger/nvim-dap')
+Plug('rcarriga/nvim-dap-ui')
+Plug('nvim-neotest/nvim-nio')
 Plug('echasnovski/mini.ai')
 Plug('mrcjkb/rustaceanvim')
 Plug('akinsho/toggleterm.nvim')
+Plug('elmcgill/springboot-nvim')
+Plug('JavaHello/spring-boot.nvim')
+Plug('stevearc/conform.nvim')
 vim.call('plug#end')
 
 require('config.options')
@@ -53,3 +57,6 @@ require('plugins.mini-ai')
 require('plugins.treesitter')
 require('plugins.telescope')
 require('plugins.toggleterm')
+require('plugins.springboot-nvim')
+require('plugins.nvim-dap-ui')
+require('plugins.conform')

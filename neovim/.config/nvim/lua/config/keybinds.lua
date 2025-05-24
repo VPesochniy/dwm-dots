@@ -36,11 +36,27 @@ keymap('i', '<C-c>', '<Esc>')
 
 keymap('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 
-keymap('n', '<leader>ff', '<Cmd>Telescope find_files hidden=true no_ignore=true<CR>')
+keymap('n', '<leader>ff', function()
+    require('telescope.builtin').find_files({
+        hidden = true,
+        no_ignore = true,
+        find_command = {
+            'fd', '--type', 'f', '--hidden', '--no-ignore', '.',
+            vim.fn.getcwd(),
+            vim.fn.expand("~/.config/nvim"),
+        },
+
+    })
+end)
+
 
 vim.keymap.set('n', '<leader>fg', function()
     require('telescope.builtin').live_grep({
-        additional_args = { "--hidden", "--no-ignore" }
+        additional_args = { "--hidden", "--no-ignore" },
+        search_dirs = {
+            vim.fn.getcwd(),
+            vim.fn.expand("~/.config/nvim"),
+        },
     })
 end, { desc = 'Live Grep (hidden and no-ignore)' })
 
@@ -87,6 +103,15 @@ keymap('v', '<leader>crv', "<Esc><Cmd>lua require('jdtls').extract_variable(true
 keymap('n', '<leader>crc', "<Cmd>lua require('jdtls').extract_constant()<CR>", { desc = 'Extract Constant' })
 keymap('v', '<leader>crc', "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", { desc = 'Extract Constant' })
 keymap('v', '<leader>crm', "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", { desc = 'Extract Method' })
+keymap("n", "<leader>jtc", "<Cmd>lua require'jdtls'.test_class()<CR>")
+keymap("n", "<leader>jtm", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>")
+keymap('n', '<leader>jdr', "<Cmd>lua require'springboot-nvim'.boot_run()<CR>", { desc = "Spring Boot Run Project" })
+keymap('n', '<leader>jcc', "<Cmd>lua require'springboot-nvim'.generate_class()<CR>", { desc = "Java Create Class" })
+keymap('n', '<leader>jci', "<Cmd>lua require'springboot-nvim'.generate_interface()<CR>",
+    { desc = "Java Create Interface" })
+keymap('n', '<leader>jce', "<Cmd>lua require'springboot-nvim'.generate_enum()<CR>", { desc = "Java Create Enum" })
+keymap('n', '<leader>jdc', "<Cmd>lua require'dap'.continue()<CR>")
+keymap('n', '<leader>jdb', "<Cmd>lua require'dap'.toggle_breakpoint()<CR>")
 
 -- Easily split windows
 vim.keymap.set("n", "<leader>v", ":vsplit<cr>", { desc = "[W]indow Split [V]ertical" })
@@ -100,9 +125,9 @@ keymap("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
 keymap("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 keymap("n", "=ap", "ma=ap'a")
 
-local Terminal = require('toggleterm.terminal').Terminal
+local Terminal   = require('toggleterm.terminal').Terminal
 
-local lazygit  = Terminal:new({
+local lazygit    = Terminal:new({
     cmd = "lazygit",
     hidden = true,
     direction = "float",
@@ -112,15 +137,15 @@ local lazygit  = Terminal:new({
 })
 
 local float_term = Terminal:new({
-  hidden = true,
-  direction = "float",
-  on_open = function()
-    vim.cmd("startinsert!")
-  end,
+    hidden = true,
+    direction = "float",
+    on_open = function()
+        vim.cmd("startinsert!")
+    end,
 })
 
 function _float_term_toggle()
-  float_term:toggle()
+    float_term:toggle()
 end
 
 function _lazygit_toggle()

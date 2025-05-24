@@ -4,7 +4,8 @@ require('lualine').setup {
         ignore_focus = {
             'neo-tree',
             'toggleterm',
-            'undotree'
+            'undotree',
+            ''
         },
         globalstatus = true,
     },

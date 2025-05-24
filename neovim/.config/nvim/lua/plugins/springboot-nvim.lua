@@ -1,0 +1,1 @@
+require('springboot-nvim').setup({})
