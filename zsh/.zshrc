@@ -215,3 +215,4 @@ source $ZSH_HOME/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Set environment to opencommit
 DOTS_HOME="$HOME/dwm-dots"
 source "$DOTS_HOME/opencommit/set_env.sh"
+eval "$DOTS_HOME/opencommit/set_env.sh"

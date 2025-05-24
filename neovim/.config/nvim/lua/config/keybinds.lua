@@ -18,6 +18,8 @@ keymap({ 'n', 'v' }, 'd', '"_d')
 keymap({ 'n', 'v' }, 'D', '"_D')
 keymap({ 'n', 'v' }, 'c', '"_c')
 keymap({ 'n', 'v' }, 'C', '"_C')
+keymap({ 'n', 'v' }, 's', '"_s')
+keymap({ 'n', 'v' }, 'S', '"_S')
 
 -- move focus to the window
 keymap('n', '<C-h>', '<C-w><C-h>')
