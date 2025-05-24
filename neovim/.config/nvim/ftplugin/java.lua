@@ -1,6 +1,8 @@
 local home = os.getenv("HOME")
+
 local mason_packages = home .. "/.local/share/nvim/mason/packages/"
 local lombok = mason_packages .. "jdtls/lombok.jar"
+
 local project_cache = home .. "/.jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local config = {
@@ -33,9 +35,8 @@ local config = {
 }
 
 local test_bundles = vim.split(vim.fn.glob(mason_packages .. "java-test/extension/server/*.jar", 1), "\n")
+
 vim.list_extend(config.init_options.bundles, test_bundles)
-
-
-vim.list_extend(config.init_options.bundles, require("plugins.spring-boot").jars)
+vim.list_extend(config.init_options.bundles, require("plugins.spring-tools").jars)
 
 require("jdtls").start_or_attach(config)
