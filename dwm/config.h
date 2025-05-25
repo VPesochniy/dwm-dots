@@ -79,6 +79,8 @@ static const char *music_player[]	= { "st", "-e", "kew", NULL };
 static const char *vscode[]			= { "codium", NULL };
 static const char *intellij_idea[]	= { "intellij-idea-ultimate-edition", NULL };
 static const char *neovim[]			= { "st", "-e", "nvim", NULL };
+static const char *bluetooth[]		= { "st", "-e", "bluetui", NULL };
+static const char *audio_mixer[]	= { "st", "-e", "pulsemixer", NULL };
 
 ResourcePref resources[] = {
 		{ "font",				STRING,		&font },
@@ -105,23 +107,24 @@ static const Key keys[] = {
 	{ 0,						XK_Print,		spawn,			{.v = flameshot } },
 
 	{ MODKEY,					XK_e,			spawn,			{.v = filemanagercmd } },
-	{ MODKEY,					XK_b,			spawn,			{.v = browser } },
-	{ MODKEY,					XK_m,			spawn,			{.v = telegram } },
+	{ MODKEY,					XK_w,			spawn,			{.v = browser } },
+	{ MODKEY,					XK_t,			spawn,			{.v = telegram } },
 	{ MODKEY,					XK_s,			spawn,			{.v = flameshot } },
 	{ MODKEY,					XK_o,			spawn,			{.v = obsidian } },
 	{ MODKEY,					XK_p,			spawn,			{.v = music_player } },
-	{ MODKEY,					XK_c,			spawn,			{.v = vscode } },
 	{ MODKEY,					XK_i,			spawn,			{.v = intellij_idea } },
-	{ MODKEY,					XK_v,			spawn,			{.v = neovim } },
+	{ MODKEY,					XK_b,			spawn,			{.v = bluetooth } },
+	{ MODKEY,					XK_m,			spawn,			{.v = audio_mixer } },
 
 	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },
 	{ MODKEY,					XK_k,			focusstack,		{.i = -1 } },
 	{ MODKEY,					XK_h,			setmfact,		{.f = -0.05} },
 	{ MODKEY,					XK_l,			setmfact,		{.f = +0.05} },
-	{ MODKEY,					XK_w,			killclient,		{0} },
+	{ MODKEY,					XK_q,			killclient,		{0} },
 	{ MODKEY,					XK_f,			zoom,			{0} },
 
-	{ MODKEY,					XK_t,			floatcentered,	{0} },
+	{ MODKEY,					XK_v,			floatcentered,	{0} },
+	{ MODKEY,					XK_c,			centerwindow,	{0} },
 	{ MODKEY,					XK_d,			movekey,		{0} },
 	{ MODKEY,					XK_r,			resizekey,		{0} },
 

@@ -255,6 +255,7 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 
 static void floatcentered(const Arg *arg);
+static void centerwindow(const Arg *arg);
 static void resizekey(const Arg *arg);
 static void movekey(const Arg *arg);
 void tagall(const Arg *arg);
@@ -2504,6 +2505,7 @@ floatcentered(const Arg *arg)
 		// Возвращаем в тайлинг
 		c->isfloating = 0;
 		arrange(c->mon);
+        XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w / 2, c->h / 2);
 	} else {
 		// Переводим в плавающее
 		togglefloating(NULL);
@@ -2517,6 +2519,31 @@ floatcentered(const Arg *arg)
 		int y = c->mon->my + (c->mon->mh - h) / 2;
 
 		resize(c, x, y, w, h, 1);
+
+        // Перемещаем курсор в центр окна
+        XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, w / 2, h / 2);
+
+		// Поднимаем и фокусируем
+		XRaiseWindow(dpy, c->win);
+		focus(c);
+	}
+}
+
+void
+centerwindow(const Arg *arg)
+{
+	if (!selmon->sel)
+		return;
+
+	Client *c = selmon->sel;
+
+    if (c->isfloating) {
+        int x = c->mon->mx + (c->mon->mw - c->w) / 2;
+        int y = c->mon->my + (c->mon->mh - c->h) / 2;
+
+        resize(c, x, y, c->w, c->h, 1);
+
+        XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w / 2, c->h / 2);
 
 		// Поднимаем и фокусируем
 		XRaiseWindow(dpy, c->win);
