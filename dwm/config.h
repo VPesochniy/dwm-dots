@@ -81,6 +81,7 @@ static const char *intellij_idea[]	= { "intellij-idea-ultimate-edition", NULL };
 static const char *neovim[]			= { "st", "-e", "nvim", NULL };
 static const char *bluetooth[]		= { "st", "-e", "bluetui", NULL };
 static const char *audio_mixer[]	= { "st", "-e", "pulsemixer", NULL };
+static const char *network[]	    = { "st", "-e", "nmtui", NULL };
 
 ResourcePref resources[] = {
 		{ "font",				STRING,		&font },
@@ -115,6 +116,7 @@ static const Key keys[] = {
 	{ MODKEY,					XK_i,			spawn,			{.v = intellij_idea } },
 	{ MODKEY,					XK_b,			spawn,			{.v = bluetooth } },
 	{ MODKEY,					XK_m,			spawn,			{.v = audio_mixer } },
+	{ MODKEY,					XK_n,			spawn,			{.v = network } },
 
 	{ MODKEY,					XK_j,			focusstack,		{.i = +1 } },
 	{ MODKEY,					XK_k,			focusstack,		{.i = -1 } },
