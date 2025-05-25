@@ -5,7 +5,8 @@ require('lualine').setup {
             'neo-tree',
             'toggleterm',
             'undotree',
-            ''
+            '',
+            'qf'
         },
         globalstatus = true,
     },

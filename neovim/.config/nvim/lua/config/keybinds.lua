@@ -89,7 +89,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Add a mark
-keymap("n", "<leader>m", "<cmd>lua require('harpoon.mark').add_file()<CR>")
+keymap("n", "M", "<cmd>lua require('harpoon.mark').add_file()<CR>")
 
 keymap("n", "<C-i>", "<C-i>")
 

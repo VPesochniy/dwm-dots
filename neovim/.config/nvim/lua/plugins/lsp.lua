@@ -13,16 +13,6 @@ require('mason-lspconfig').setup({
         function(server_name)
             require('lspconfig')[server_name].setup({})
         end,
-
-        -- -- Специальная настройка для jdtls
-        -- ["jdtls"] = function()
-        --     require('spring_boot').init_lsp_commands()
-        --     require('lspconfig').jdtls.setup({
-        --         init_options = {
-        --             bundles = require('spring_boot').java_extensions(),
-        --         },
-        --     })
-        -- end,
     }
 })
 

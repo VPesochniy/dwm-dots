@@ -32,6 +32,13 @@ local config = {
                 mason_packages .. "java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", 1)
         },
     },
+    settings = {
+        java = {
+            telemetry = {
+                enabled = false,
+            },
+        },
+    },
 }
 
 local test_bundles = vim.split(vim.fn.glob(mason_packages .. "java-test/extension/server/*.jar", 1), "\n")
