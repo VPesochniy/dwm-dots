@@ -1,0 +1,133 @@
+
+let mapleader = ' '
+
+set number
+set relativenumber
+set numberwidth=4
+
+set mouse=a
+set clipboard=unnamedplus
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set signcolumn=yes
+set conceallevel=0
+set cursorline
+
+set scrolloff=10
+set sidescrolloff=20
+set nowrap
+
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+
+set smartindent
+set breakindent
+
+set nobackup
+set noswapfile
+set undofile
+
+set splitbelow
+set splitright
+
+set timeoutlen=500
+set updatetime=100
+
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap G Gzz
+
+nnoremap <Esc> :nohlsearch<CR>
+nnoremap <C-c> :nohlsearch<CR>
+
+nnoremap d "_d
+nnoremap D "_D
+nnoremap c "_c
+nnoremap C "_C
+vnoremap d "_d
+vnoremap D "_D
+vnoremap c "_c
+vnoremap C "_C
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <leader>v :vsplit<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+nnoremap U <C-r>
+inoremap <C-l> <Del>
+
+nnoremap ? :%s//gI<Left><Left><Left>
+nnoremap =ap ma=ap'a "dont need as much
+
+map <C-n> <Action>(NextTab)
+map <C-p> <Action>(PreviousTab)
+
+map gd <Action>(GotoDeclarationOnly)
+map gD <Action>(GotoTypeDeclaration)
+map gr <Action>(GotoDeclaration)
+map gt <Action>(GotoTest)
+
+map <C-q> <Action>(CloseContent)
+map <leader>q <Action>(HideActiveWindow)
+
+nmap <C-g> <Action>(SelectNextOccurrence)
+xmap <C-g> <Action>(SelectNextOccurrence)
+nmap <C-S-g> <Action>(UnselectPreviousOccurrence)
+xmap <C-S-g> <Action>(UnselectPreviousOccurrence)
+
+map <leader>e <Action>(ActivateProjectToolWindow)
+map <leader>n <Action>(NewClass)
+map <leader>N <Action>(NewElement)
+
+map <leader>or <Action>($LRU)
+map <leader>on <Action>(WelcomeScreen.CreateNewProject)
+
+map <leader>ff <Action>(GotoFile)
+map <leader>fg <Action>(FindInPath)
+map <leader>fa <Action>(GotoAction)
+
+map <leader>tt <Action>(ActivateTerminalToolWindow)
+map <leader>ts <Action>(ActivateServicesToolWindow)
+map <leader>td <Action>(ActivateDebugToolWindow)
+
+map <leader>l <Action>(ReformatCode)
+map <leader>r <Action>(RenameElement)
+map <leader>a <Action>(ShowIntentionActions)
+map <leader>g <Action>(Generate)
+
+map <leader>M <Action>(MainMenu)
+map <leader>p <Action>(ActivateProblemsViewToolWindow)
+map <leader>m <Action>(ActivateMavenToolWindow)
+
+map <leader>b <Action>(ToggleLineBreakpoint)
+map <leader>D <Action>(ChooseDebugConfiguration)
+map <leader>s <Action>(Stop)
+map <leader>dc <Action>(Resume)
+map <leader>dn <Action>(StepOver)
+map <leader>di <Action>(StepInto)
+map <leader>do <Action>(StepOut)
+map <leader>dr <Action>(Rerun)
+map <leader>dm <Action>(XDebugger.MuteBreakpoints)
+
+set mini-ai
+set quickscope
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'justinmk/vim-sneak'
+
