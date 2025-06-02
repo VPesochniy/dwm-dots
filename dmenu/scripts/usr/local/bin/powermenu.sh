@@ -4,7 +4,7 @@ options="Lock\nLogout\nReboot\nShutdown"
 selected=$(echo -e $options | dmenu -i -sb "#fabd2f")
 
 if [[ $selected = "Lock" ]]; then
-	betterlockscreen -l
+	betterlockscreen --lock dim
 elif [[ $selected = "Logout" ]]; then
 	pkill dwm
 elif [[ $selected = "Reboot" ]]; then
